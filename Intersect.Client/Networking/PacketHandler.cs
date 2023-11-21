@@ -39,7 +39,7 @@ namespace Intersect.Client.Networking
         {
             public IApplicationContext ApplicationContext { get; }
 
-            public INetwork Network => Networking.Network.Socket.GetNetwork();
+            public INetwork Network => Networking.Network.Socket.Network;
 
             public VirtualPacketSender(IApplicationContext applicationContext) =>
                 ApplicationContext = applicationContext ?? throw new ArgumentNullException(nameof(applicationContext));
@@ -155,15 +155,13 @@ namespace Intersect.Client.Networking
         //PingPacket
         public void HandlePacket(IPacketSender packetSender, PingPacket packet)
         {
-            if (packet.RequestingReply)
+            if (!packet.RequestingReply)
             {
-                PacketSender.SendPing();
-                PingTime = Timing.Global.Milliseconds;
+                return;
             }
-            else
-            {
-                Network.Ping = (int) (Timing.Global.Milliseconds - PingTime) / 2;
-            }
+
+            PacketSender.SendPing();
+            PingTime = Timing.Global.Milliseconds;
         }
 
         //ConfigPacket
