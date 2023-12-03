@@ -115,7 +115,7 @@ namespace Intersect.Server.Networking
             {
                 Log.Error(
                     Strings.Errors.floodsize.ToString(
-                        pSize, client?.User?.Name ?? "", client?.Entity?.Name ?? "", client.GetIp()
+                        pSize, client?.User?.Name ?? "", client?.Entity?.Name ?? "", client.Ip
                     )
                 );
 
@@ -132,7 +132,7 @@ namespace Intersect.Server.Networking
                 {
                     Log.Error(
                         Strings.Errors.floodburst.ToString(
-                            client.PacketCount, client?.User?.Name ?? "", client?.Entity?.Name ?? "", client.GetIp()
+                            client.PacketCount, client?.User?.Name ?? "", client?.Entity?.Name ?? "", client.Ip
                         )
                     );
 
@@ -182,7 +182,7 @@ namespace Intersect.Server.Networking
             {
                 if (client.PacketFloodDetect)
                 {
-                    Log.Diagnostic(string.Format("Possible Flood Detected: Packets in last second {00} [User: {01} | Player: {02} | IP {03}]", client.PacketCount, client?.User?.Name ?? "", client?.Entity?.Name ?? "", client.GetIp()));
+                    Log.Diagnostic(string.Format("Possible Flood Detected: Packets in last second {00} [User: {01} | Player: {02} | IP {03}]", client.PacketCount, client?.User?.Name ?? "", client?.Entity?.Name ?? "", client.Ip));
                 }
 
                 client.PacketCount = 0;
@@ -242,7 +242,7 @@ namespace Intersect.Server.Networking
                     sanitizationBuilder.Append("Received out-of-bounds values in '");
                     sanitizationBuilder.Append(packet.GetType().Name);
                     sanitizationBuilder.Append("' packet from '");
-                    sanitizationBuilder.Append(client.GetIp());
+                    sanitizationBuilder.Append(client.Ip);
                     sanitizationBuilder.Append("', '");
                     sanitizationBuilder.Append(client.Name);
                     sanitizationBuilder.AppendLine("': ");
@@ -263,7 +263,7 @@ namespace Intersect.Server.Networking
             catch (Exception exception)
             {
                 Log.Error(
-                    $"Client Packet Error! [Packet: {packet.GetType().Name} | User: {client.Name ?? ""} | Player: {client.Entity?.Name ?? ""} | IP {client.GetIp()}]"
+                    $"Client Packet Error! [Packet: {packet.GetType().Name} | User: {client.Name ?? ""} | Player: {client.Entity?.Name ?? ""} | IP {client.Ip}]"
                 );
 
                 Log.Error(exception);
@@ -387,7 +387,7 @@ namespace Intersect.Server.Networking
                         {
                             Log.Debug(
                                 exception,
-                                $"Exception thrown dropping packet ({packet.GetType().Name}/{client.GetIp()}/{client.Name ?? ""}/{client.Entity?.Name ?? ""})"
+                                $"Exception thrown dropping packet ({packet.GetType().Name}/{client.Ip}/{client.Name ?? ""}/{client.Entity?.Name ?? ""})"
                             );
                         }
 
@@ -511,6 +511,7 @@ namespace Intersect.Server.Networking
                 return;
             }
 
+
             client.ResetTimeout();
 
             // Are we at capacity yet, or can this user still log in?
@@ -524,7 +525,7 @@ namespace Intersect.Server.Networking
             var user = User.TryLogin(packet.Username, packet.Password);
             if (user == null)
             {
-                UserActivityHistory.LogActivity(Guid.Empty, Guid.Empty, client?.GetIp(), UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.FailedLogin, packet.Username);
+                UserActivityHistory.LogActivity(Guid.Empty, Guid.Empty, client?.Ip, UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.FailedLogin, packet.Username);
 
                 client.FailedAttempt();
                 PacketSender.SendError(client, Strings.Account.badlogin);
@@ -569,7 +570,7 @@ namespace Intersect.Server.Networking
             }
 
             //Check for ban
-            var isBanned = Ban.CheckBan(client.User, client.GetIp());
+            var isBanned = Ban.CheckBan(client.User, client.Ip);
             if (isBanned != null)
             {
                 client.SetUser(null);
@@ -591,9 +592,9 @@ namespace Intersect.Server.Networking
             }
 
             //Check Mute Status and Load into user property
-            Mute.FindMuteReason(client.User, client.GetIp());
+            Mute.FindMuteReason(client.User, client.Ip);
 
-            UserActivityHistory.LogActivity(user?.Id ?? Guid.Empty, Guid.Empty, client?.GetIp(), UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.Login, null);
+            UserActivityHistory.LogActivity(user?.Id ?? Guid.Empty, Guid.Empty, client?.Ip, UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.Login, null);
 
             // PacketSender.SendServerConfig(client); // TODO: We already send this when the client is initialized, why do we send it again here?
 
@@ -644,7 +645,7 @@ namespace Intersect.Server.Networking
                 return;
             }
 
-            UserActivityHistory.LogActivity(client.User?.Id ?? Guid.Empty, Guid.Empty, client.GetIp(),
+            UserActivityHistory.LogActivity(client.User?.Id ?? Guid.Empty, Guid.Empty, client.Ip,
                 UserActivityHistory.PeerType.Client,
                 packet.ReturningToCharSelect
                     ? UserActivityHistory.UserAction.SwitchPlayer
@@ -1420,7 +1421,7 @@ namespace Intersect.Server.Networking
             }
 
             //Check for ban
-            var isBanned = Ban.CheckBan(client.GetIp());
+            var isBanned = Ban.CheckBan(client.Ip);
             if (isBanned != null)
             {
                 PacketSender.SendError(client, isBanned);
@@ -1441,7 +1442,7 @@ namespace Intersect.Server.Networking
                 else
                 {
 
-                    UserActivityHistory.LogActivity(client.User?.Id ?? Guid.Empty, Guid.Empty, client?.GetIp(), UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.Create, client?.Name);
+                    UserActivityHistory.LogActivity(client.User?.Id ?? Guid.Empty, Guid.Empty, client?.Ip, UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.Create, client?.Name);
 
                     DbInterface.CreateAccount(client, packet.Username, packet.Password, packet.Email);
 
@@ -1506,8 +1507,11 @@ namespace Intersect.Server.Networking
                 return;
             }
 
-            var newChar = new Player();
-            newChar.Id = Guid.NewGuid();
+            Player newChar = new()
+            {
+                Id = Guid.NewGuid(),
+            };
+
             newChar.ValidateLists();
             for (var i = 0; i < Options.EquipmentSlots.Count; i++)
             {
@@ -1556,9 +1560,14 @@ namespace Intersect.Server.Networking
                 }
             }
 
-            UserActivityHistory.LogActivity(client?.User?.Id ?? Guid.Empty, client?.Entity?.Id ?? Guid.Empty, client?.GetIp(), UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.CreatePlayer, $"{client?.Name},{client?.Entity?.Name}");
+            UserActivityHistory.LogActivity(client?.User?.Id ?? Guid.Empty, client?.Entity?.Id ?? Guid.Empty, client?.Ip, UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.CreatePlayer, $"{client?.Name},{client?.Entity?.Name}");
 
-            client.User.AddCharacter(newChar);
+            if (!client.User.TryAddCharacter(newChar))
+            {
+                client.LogAndDisconnect(newChar.Id);
+                return;
+            }
+
             newChar.SetOnline();
 
             PacketSender.SendJoinGame(client);
@@ -2370,7 +2379,11 @@ namespace Intersect.Server.Networking
                         PacketSender.SendFriends(otherPlayer);
                     }
 
-                    Player.RemoveFriendship(player.Id, friendId);
+                    if (!Player.TryRemoveFriendship(player.Id, friendId))
+                    {
+                        client.LogAndDisconnect(player.Id, nameof(Player.TryRemoveFriendship));
+                        return;
+                    }
                 }
             }
         }
@@ -2395,7 +2408,11 @@ namespace Intersect.Server.Networking
             {
                 if (!player.CachedFriends.ContainsKey(target.Id)) // Incase one user deleted friend then re-requested
                 {
-                    player.AddFriend(target);
+                    if (!player.TryAddFriend(target))
+                    {
+                        return;
+                    }
+
                     PacketSender.SendChatMsg(
                         player, Strings.Friends.notification.ToString(target.Name), ChatMessageType.Friend, CustomColors.Alerts.Accepted
                     );
@@ -2405,7 +2422,11 @@ namespace Intersect.Server.Networking
 
                 if (!target.CachedFriends.ContainsKey(player.Id)) // Incase one user deleted friend then re-requested
                 {
-                    target.AddFriend(player);
+                    if (!target.TryAddFriend(player))
+                    {
+                        return;
+                    }
+
                     PacketSender.SendChatMsg(
                         target, Strings.Friends.accept.ToString(player.Name), ChatMessageType.Friend, CustomColors.Alerts.Accepted
                     );
@@ -2453,7 +2474,7 @@ namespace Intersect.Server.Networking
 
             client.LoadCharacter(character);
 
-            UserActivityHistory.LogActivity(client.User?.Id ?? Guid.Empty, client?.Entity?.Id ?? Guid.Empty, client?.GetIp(), UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.SelectPlayer, $"{client?.Name},{client?.Entity?.Name}");
+            UserActivityHistory.LogActivity(client.User?.Id ?? Guid.Empty, client?.Entity?.Id ?? Guid.Empty, client?.Ip, UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.SelectPlayer, $"{client?.Name},{client?.Entity?.Name}");
 
             try
             {
@@ -2497,9 +2518,12 @@ namespace Intersect.Server.Networking
                 {
                     if (chr.Id == packet.CharacterId)
                     {
-                        UserActivityHistory.LogActivity(client?.User?.Id ?? Guid.Empty, client?.Entity?.Id ?? Guid.Empty, client?.GetIp(), UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.DeletePlayer, $"{client?.Name},{client?.Entity?.Name}");
+                        UserActivityHistory.LogActivity(client?.User?.Id ?? Guid.Empty, client?.Entity?.Id ?? Guid.Empty, client?.Ip, UserActivityHistory.PeerType.Client, UserActivityHistory.UserAction.DeletePlayer, $"{client?.Name},{client?.Entity?.Name}");
 
-                        client.User.DeleteCharacter(chr);
+                        if (!client.User.TryDeleteCharacter(chr))
+                        {
+                            client.LogAndDisconnect(chr.Id, nameof(User.TryDeleteCharacter));
+                        }
                     }
                 }
             }
