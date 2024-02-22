@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -12,14 +12,17 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>AscensionGameDev.Intersect.Client</PackageId>
-    <Description>Game Client - Part of the Intersect 2D Game Creation Suite</Description>
+    <PackageId>Westerre</PackageId>
+    <Description>Klient Gry Westerre</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RootNamespace>Intersect.Client</RootNamespace>
-    <AssemblyName>Intersect Client</AssemblyName>
+    <AssemblyName>Westerre</AssemblyName>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <FileAlignment>512</FileAlignment>
+    <Authors>Westerre</Authors>
+    <Product>Westerre</Product>
+    <Copyright>Copyright © Westerre 2023</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
