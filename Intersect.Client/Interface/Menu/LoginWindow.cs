@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text;
 
 using Intersect.Client.Core;
@@ -50,6 +51,8 @@ namespace Intersect.Client.Interface.Menu
         private TextBox mUsernameTextbox;
 
         private bool mUseSavedPass;
+
+        private Button mDiscordButton; // Discord button
 
         //Init
         public LoginWindow(Canvas parent, MainMenu mainMenu)
@@ -118,6 +121,13 @@ namespace Intersect.Client.Interface.Menu
                 Text = Strings.LoginWindow.Back,
             };
             mBackBtn.Clicked += BackBtn_Clicked;
+
+            // Discord Button
+            mDiscordButton = new Button(mLoginWindow, "DiscordButton")
+            {
+                Text = "Discord", // Button text
+            };
+            mDiscordButton.Clicked += DiscordButton_Clicked;
 
             LoadCredentials();
 
@@ -221,6 +231,25 @@ namespace Intersect.Client.Interface.Menu
         void LoginBtn_Clicked(Base sender, ClickedEventArgs arguments)
         {
             TryLogin();
+        }
+
+        void DiscordButton_Clicked(Base sender, ClickedEventArgs arguments)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = "cmd",
+                    Arguments = $"/c start https://discord.com/",
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                });
+            }
+            catch (Exception ex)
+            {
+                // Error if it doesn't open the link
+                Console.WriteLine($"Error opening Discord link: {ex.Message}");
+            }
         }
 
         public void TryLogin()
