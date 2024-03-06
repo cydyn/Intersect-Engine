@@ -53,8 +53,6 @@ namespace Intersect.Client.Interface.Menu
 
         private bool mUseSavedPass;
 
-        private Button mDiscordButton; // Discord button
-
         //Init
         public LoginWindow(Canvas parent, MainMenu mainMenu)
         {
@@ -122,13 +120,6 @@ namespace Intersect.Client.Interface.Menu
                 Text = Strings.Login.back,
             };
             mBackBtn.Clicked += BackBtn_Clicked;
-
-            // Discord Button
-            mDiscordButton = new Button(mLoginWindow, "DiscordButton")
-            {
-                Text = "Discord", // Button text
-            };
-            mDiscordButton.Clicked += DiscordButton_Clicked;
 
             LoadCredentials();
 
@@ -232,54 +223,6 @@ namespace Intersect.Client.Interface.Menu
         void LoginBtn_Clicked(Base sender, ClickedEventArgs arguments)
         {
             TryLogin();
-        }
-
-        void DiscordButton_Clicked(Base sender, ClickedEventArgs arguments)
-        {
-            try
-            {
-                // Spróbuj otworzyć link za pomocą odpowiedniego polecenia dla danego systemu operacyjnego
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                {
-                    System.Diagnostics.Process.Start(new ProcessStartInfo
-                    {
-                        FileName = "cmd",
-                        Arguments = $"/c start https://discord.gg/ztKp93zvzb",
-                        UseShellExecute = false,
-                        CreateNoWindow = true
-                    });
-                }
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                {
-                    System.Diagnostics.Process.Start(new ProcessStartInfo
-                    {
-                        FileName = "xdg-open",
-                        Arguments = $"\"https://discord.gg/ztKp93zvzb\"",
-                        UseShellExecute = false,
-                        CreateNoWindow = true
-                    });
-                }
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                {
-                    System.Diagnostics.Process.Start(new ProcessStartInfo
-                    {
-                        FileName = "open",
-                        Arguments = $"\"https://discord.gg/ztKp93zvzb\"",
-                        UseShellExecute = false,
-                        CreateNoWindow = true
-                    });
-                }
-                else
-                {
-                    // Obsługa błędu dla nieobsługiwanego systemu operacyjnego
-                    Console.WriteLine("Unsupported operating system.");
-                }
-            }
-            catch (Exception ex)
-            {
-                // Obsłużanie błędu, jeśli nie udało się otworzyć linku
-                Console.WriteLine($"Error opening Discord link: {ex.Message}");
-            }
         }
 
         public void TryLogin()
