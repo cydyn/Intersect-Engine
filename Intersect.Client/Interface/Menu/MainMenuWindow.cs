@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using Intersect.Client.Core;
@@ -20,6 +22,7 @@ public partial class MainMenuWindow : Window
     private readonly Button _buttonRegister;
     private readonly Button _buttonSettings;
     private readonly Button _buttonStart;
+    private readonly Button _buttonDiscord;
     private readonly MainMenu _mainMenu;
 
     // ReSharper disable once SuggestBaseTypeForParameterInConstructor
@@ -77,7 +80,15 @@ public partial class MainMenuWindow : Window
             Text = Strings.MainMenu.Start,
         };
         _buttonStart.Clicked += ButtonStartOnClicked;
+        
+        _buttonDiscord = new Button(this, nameof(_buttonDiscord))
+        {
+            IsTabable = true,
+            Text = "Discord", // Tekst przycisku Discord
+        };
+        _buttonDiscord.Clicked += ButtonDiscordOnClicked;
     }
+
 
     private void ButtonCreditsOnClicked(Base sender, ClickedEventArgs arguments) =>
         _mainMenu.SwitchToWindow<CreditsWindow>();
@@ -178,7 +189,53 @@ public partial class MainMenuWindow : Window
         const string singleplayer = "singleplayer";
         PacketSender.SendLogin(singleplayer, Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(singleplayer))));
     }
-
+    void ButtonDiscordOnClicked(Base sender, ClickedEventArgs arguments)
+    {
+        try
+        {
+            // Spróbuj otworzyć link za pomocą odpowiedniego polecenia dla danego systemu operacyjnego
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = "cmd",
+                    Arguments = $"/c start https://discord.gg/ztKp93zvzb",
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                });
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = "xdg-open",
+                    Arguments = $"\"https://discord.gg/ztKp93zvzb\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                });
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = "open",
+                    Arguments = $"\"https://discord.gg/ztKp93zvzb\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                });
+            }
+            else
+            {
+                // Obsługa błędu dla nieobsługiwanego systemu operacyjnego
+                Console.WriteLine("Unsupported operating system.");
+            }
+        }
+        catch (Exception ex)
+        {
+            // Obsłużanie błędu, jeśli nie udało się otworzyć linku
+            Console.WriteLine($"Error opening Discord link: {ex.Message}");
+        }
+    }
     internal void Reset()
     {
         _buttonSettings.Show();
