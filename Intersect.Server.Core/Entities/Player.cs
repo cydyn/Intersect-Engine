@@ -5648,7 +5648,7 @@ namespace Intersect.Server.Entities
         }
 
         //Equipment
-        public void EquipItem(ItemBase itemBase, int slot = -1)
+        public void EquipItem(ItemBase itemBase, int slot = -1, bool updateCooldown = false)
         {
             if (itemBase == null || itemBase.ItemType != ItemType.Equipment)
             {
@@ -5686,7 +5686,13 @@ namespace Intersect.Server.Entities
                         UnequipItem(Options.WeaponIndex, false);
                     }
                 }
+
                 SetEquipmentSlot(itemBase.EquipmentSlot, slot);
+
+                if (updateCooldown)
+                {
+                    UpdateCooldown(itemBase);
+                }
             }
 
             EnqueueStartCommonEvent(itemBase.GetEventTrigger(ItemEventTriggers.OnEquip));
