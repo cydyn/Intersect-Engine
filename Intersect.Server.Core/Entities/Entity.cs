@@ -2070,6 +2070,10 @@ namespace Intersect.Server.Entities
             if (this is Player && !(enemy is Resource))
             {
                 var lifestealRate = thisPlayer.GetEquipmentBonusEffect(ItemEffect.Lifesteal) / 100f;
+                if (lifestealRate < 0)
+                {
+                    lifestealRate = 0; // Jeśli lifestealRate jest ujemny, ustaw na zero
+                }
                 var idealHealthRecovered = lifestealRate * baseDamage;
                 var actualHealthRecovered = Math.Min(enemyVitals[(int)Vital.Health], idealHealthRecovered);
 
@@ -2085,6 +2089,10 @@ namespace Intersect.Server.Entities
                 }
 
                 var manastealRate = (thisPlayer.GetEquipmentBonusEffect(ItemEffect.Manasteal) / 100f);
+                if (manastealRate < 0)
+                {
+                    manastealRate = 0; // Jeśli manastealRate jest ujemny, ustaw na zero
+                }
                 var idealManaRecovered = manastealRate * baseDamage;
                 var actualManaRecovered = Math.Min(enemyVitals[(int)Vital.Mana], idealManaRecovered);
 
