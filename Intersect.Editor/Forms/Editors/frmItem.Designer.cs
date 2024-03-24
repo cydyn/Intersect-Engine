@@ -1697,6 +1697,8 @@ namespace Intersect.Editor.Forms.Editors
             nudEffectPercent.ForeColor = System.Drawing.Color.Gainsboro;
             nudEffectPercent.Location = new System.Drawing.Point(15, 190);
             nudEffectPercent.Margin = new Padding(4, 3, 4, 3);
+            nudEffectPercent.Maximum = new decimal(new int[] { 100, 0, 0, 0 });
+            nudEffectPercent.Minimum = new decimal(new int[] { -100, 0, 0, int.MinValue });
             nudEffectPercent.Name = "nudEffectPercent";
             nudEffectPercent.Size = new Size(282, 23);
             nudEffectPercent.TabIndex = 55;
@@ -1826,6 +1828,7 @@ namespace Intersect.Editor.Forms.Editors
             nudMPPercentage.Location = new System.Drawing.Point(155, 92);
             nudMPPercentage.Margin = new Padding(4, 3, 4, 3);
             nudMPPercentage.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudMPPercentage.Minimum = new decimal(new int[] { -100, 0, 0, int.MinValue });
             nudMPPercentage.Name = "nudMPPercentage";
             nudMPPercentage.Size = new Size(90, 23);
             nudMPPercentage.TabIndex = 68;
@@ -1839,6 +1842,7 @@ namespace Intersect.Editor.Forms.Editors
             nudHPPercentage.Location = new System.Drawing.Point(155, 43);
             nudHPPercentage.Margin = new Padding(4, 3, 4, 3);
             nudHPPercentage.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudHPPercentage.Minimum = new decimal(new int[] { -100, 0, 0, int.MinValue });
             nudHPPercentage.Name = "nudHPPercentage";
             nudHPPercentage.Size = new Size(90, 23);
             nudHPPercentage.TabIndex = 67;
