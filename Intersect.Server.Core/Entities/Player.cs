@@ -388,6 +388,8 @@ namespace Intersect.Server.Entities
                     }
                 }
             }
+
+            CacheEquipmentTriggers();
         }
 
         public void SendPacket(IPacket packet, TransmissionMode mode = TransmissionMode.All)
@@ -1444,26 +1446,30 @@ namespace Intersect.Server.Entities
             base.TryAttack(target, projectile, parentSpell, parentItem, projectileDir);
         }
 
+        protected override void ReactToDamage()
+        {
+            if (IsDead() || IsDisposed)
+            {
+                base.ReactToDamage();
+                return;
+            }
+
+            foreach (var trigger in CachedEquipmentOnDamageTriggers)
+            {
+                EnqueueStartCommonEvent(trigger);
+            }
+
+            base.ReactToDamage();
+        }
+
         protected override void CheckForOnhitAttack(Entity enemy, bool isAutoAttack)
         {
             if (isAutoAttack)
             {
-                for (var slot = 0; slot < Options.EquipmentSlots.Count; slot++)
+                EnqueueStartCommonEvent(LastAttackingWeapon?.GetEventTrigger(ItemEventTriggers.OnHit));
+                foreach (var trigger in CachedEquipmentOnHitTriggers)
                 {
-                    if (!TryGetEquippedItem(slot, out var equippedItem) || equippedItem == null || equippedItem.Descriptor == null)
-                    {
-                        continue;
-                    }
-
-                    // We have special logic for handling weapons, so the player can't hot-swap their weapon and get a different on-hit event to proc
-                    if (slot == Options.WeaponIndex && LastAttackingWeapon != default)
-                    {
-                        EnqueueStartCommonEvent(LastAttackingWeapon.OnHitEvent);
-                    }
-                    else
-                    {
-                        EnqueueStartCommonEvent(equippedItem.Descriptor.OnHitEvent);
-                    }
+                    EnqueueStartCommonEvent(trigger);
                 }
             }
 
@@ -1575,9 +1581,10 @@ namespace Intersect.Server.Entities
                 }
             }
 
+            LastAttackingWeapon = weapon;
+
             if (weapon != null)
             {
-                LastAttackingWeapon = weapon;
                 base.TryAttack(
                     target, weapon.Damage, (DamageType)weapon.DamageType, (Stat)weapon.ScalingStat, weapon.Scaling,
                     weapon.CritChance, weapon.CritMultiplier, null, null, weapon
@@ -2776,7 +2783,7 @@ namespace Intersect.Server.Entities
             if (success)
             {
                 // Start common events related to inventory changes.
-                EnqueueStartCommonEvent(item.Descriptor?.PickupEvent);
+                EnqueueStartCommonEvent(item.Descriptor?.GetEventTrigger(ItemEventTriggers.OnPickup));
                 StartCommonEventsWithTrigger(CommonEventTrigger.InventoryChanged);
 
                 return true;
@@ -3110,7 +3117,7 @@ namespace Intersect.Server.Entities
                 EquipmentProcessItemLoss(slotIndex);
             }
 
-            EnqueueStartCommonEvent(itemDescriptor.DropEvent);
+            EnqueueStartCommonEvent(itemDescriptor.GetEventTrigger(ItemEventTriggers.OnDrop));
             StartCommonEventsWithTrigger(CommonEventTrigger.InventoryChanged);
             UpdateGatherItemQuests(itemDescriptor.Id);
             PacketSender.SendInventoryItemUpdate(this, slotIndex);
@@ -3210,13 +3217,15 @@ namespace Intersect.Server.Entities
                     return;
                 }
 
+                var useEvent = itemBase.GetEventTrigger(ItemEventTriggers.OnUse);
+
                 switch (itemBase.ItemType)
                 {
                     case ItemType.None:
                     case ItemType.Currency:
-                        if (itemBase.UseEvent != default)
+                        if (useEvent != default)
                         {
-                            EnqueueStartCommonEvent(itemBase.UseEvent);
+                            EnqueueStartCommonEvent(useEvent);
                         }
                         else
                         {
@@ -3284,9 +3293,9 @@ namespace Intersect.Server.Entities
                             }
                         }
 
-                        if (TryTakeItem(Items[slot], 1) && itemBase.UseEvent != default)
+                        if (TryTakeItem(Items[slot], 1) && useEvent != default)
                         {
-                            EnqueueStartCommonEvent(itemBase.UseEvent);
+                            EnqueueStartCommonEvent(useEvent);
                         }
 
                         break;
@@ -3298,7 +3307,7 @@ namespace Intersect.Server.Entities
                         }
 
                         EquipItem(itemBase, slot);
-                        EnqueueStartCommonEvent(itemBase.UseEvent);
+                        EnqueueStartCommonEvent(useEvent);
 
                         break;
                     case ItemType.Spell:
@@ -3324,14 +3333,14 @@ namespace Intersect.Server.Entities
 
                         if (itemBase.SingleUse)
                         {
-                            if (TryTakeItem(Items[slot], 1) && itemBase.UseEvent != default)
+                            if (TryTakeItem(Items[slot], 1))
                             {
-                                EnqueueStartCommonEvent(itemBase.UseEvent);
+                                EnqueueStartCommonEvent(useEvent);
                             }
                         }
-                        else if (itemBase.UseEvent != default)
+                        else
                         {
-                            EnqueueStartCommonEvent(itemBase.UseEvent);
+                            EnqueueStartCommonEvent(useEvent);
                         }
 
                         break;
@@ -3350,7 +3359,7 @@ namespace Intersect.Server.Entities
                         break;
                     case ItemType.Bag:
                         OpenBag(Item, itemBase);
-                        EnqueueStartCommonEvent(itemBase.UseEvent);
+                        EnqueueStartCommonEvent(useEvent);
 
                         break;
                     default:
@@ -5676,7 +5685,7 @@ namespace Intersect.Server.Entities
                 SetEquipmentSlot(itemBase.EquipmentSlot, slot);
             }
 
-            EnqueueStartCommonEvent(itemBase.EquipEvent);
+            EnqueueStartCommonEvent(itemBase.GetEventTrigger(ItemEventTriggers.OnEquip));
 
             ProcessEquipmentUpdated(true);
         }
@@ -5710,7 +5719,7 @@ namespace Intersect.Server.Entities
 
             if (TryGetEquippedItem(equipmentSlot, out var prevEquipped))
             {
-                EnqueueStartCommonEvent(prevEquipped.Descriptor?.UnequipEvent);
+                EnqueueStartCommonEvent(prevEquipped.Descriptor?.GetEventTrigger(ItemEventTriggers.OnUnequip));
             }
 
             Equipment[equipmentSlot] = -1;
@@ -5729,6 +5738,43 @@ namespace Intersect.Server.Entities
             {
                 PacketSender.SendPlayerEquipmentToProximity(this);
                 PacketSender.SendEntityStats(this);
+            }
+            
+            CacheEquipmentTriggers();
+        }
+
+        [NotMapped, JsonIgnore]
+        private List<EventBase> CachedEquipmentOnHitTriggers { get; set; } = new List<EventBase>();
+        
+        [NotMapped, JsonIgnore]
+        private List<EventBase> CachedEquipmentOnDamageTriggers { get; set; } = new List<EventBase>();
+
+        private void CacheEquipmentTriggers()
+        {
+            CachedEquipmentOnHitTriggers.Clear();
+            CachedEquipmentOnDamageTriggers.Clear();
+
+            for (var slot = 0; slot < Options.EquipmentSlots.Count; slot++)
+            {
+                if (!TryGetEquippedItem(slot, out var equippedItem) || equippedItem == null || equippedItem.Descriptor == null)
+                {
+                    continue;
+                }
+
+                var onHit = equippedItem.Descriptor.GetEventTrigger(ItemEventTriggers.OnHit);
+                var onDamaged = equippedItem.Descriptor.GetEventTrigger(ItemEventTriggers.OnDamageReceived);
+
+                // We have special logic for handling weapons, so the player can't hot-swap their weapon and get a different on-hit event to proc
+                // As a result, don't cache them, instead use property "LastAttackingWeapon"
+                if (onHit != null && slot != Options.WeaponIndex)
+                {
+                    CachedEquipmentOnHitTriggers.Add(onHit);
+                }
+
+                if (onDamaged != null)
+                {
+                    CachedEquipmentOnDamageTriggers.Add(onDamaged);
+                }
             }
         }
 

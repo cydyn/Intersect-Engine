@@ -1467,6 +1467,12 @@ namespace Intersect.Server.Entities
             var maxVitalValue = GetMaxVital(vitalId);
             var safeAmount = Math.Min(amount, GetVital(vital));
             SetVital(vital, GetVital(vital) - safeAmount);
+            ReactToDamage();
+        }
+
+        protected virtual void ReactToDamage()
+        {
+            return;
         }
 
         public virtual int[] GetStatValues()
