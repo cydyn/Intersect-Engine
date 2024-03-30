@@ -2067,7 +2067,8 @@ namespace Intersect.Server.Entities
             var thisPlayer = this as Player;
 
             //Check for lifesteal/manasteal
-            if (this is Player && !(enemy is Resource))
+            if (baseDamage > 0 && this != enemy)
+                if (this is Player && !(enemy is Resource))
             {
                 var lifestealRate = thisPlayer.GetEquipmentBonusEffect(ItemEffect.Lifesteal) / 100f;
                 if (lifestealRate < 0)
