@@ -829,6 +829,9 @@ namespace Intersect.Editor.Localization
             public static LocalizedString sound = @"Sound:";
 
             public static LocalizedString soundcomplete = @"Complete Sound Playback After Anim Dies";
+            
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString LoopSoundDuringPreview = @"Loop sound during preview";
 
             public static LocalizedString swap = @"Swap Upper/Lower";
 
@@ -1679,6 +1682,8 @@ Tick timer saved in server config.json.";
             public static LocalizedString title = @"Equip/Unequip Player Items";
 
             public static LocalizedString unequip = @"Unequip?";
+
+            public static LocalizedString TriggerCooldown = @"Trigger Cooldown?";
 
         }
 
