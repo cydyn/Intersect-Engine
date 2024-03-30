@@ -463,7 +463,15 @@ namespace Intersect.Client.Interface.Game.Character
                             break;
                         case ItemEffect.Lifesteal:
                             LifeStealAmount += effect.Percentage;
-                            mLifeSteal?.SetText(Strings.Character.Lifesteal.ToString(LifeStealAmount));
+                            // Checks if LifeStealAmount is less than 0, if so, sets the text to "0"
+                            if (LifeStealAmount < 0)
+                            {
+                                mLifeSteal?.SetText(Strings.Character.Lifesteal.ToString($"0 ({LifeStealAmount})"));
+                            }
+                            else
+                            {
+                                mLifeSteal?.SetText(Strings.Character.Lifesteal.ToString(LifeStealAmount));
+                            }
 
                             break;
                         case ItemEffect.Tenacity:
@@ -483,7 +491,15 @@ namespace Intersect.Client.Interface.Game.Character
                             break;
                         case ItemEffect.Manasteal:
                             ManaStealAmount += effect.Percentage;
-                            mManaSteal?.SetText(Strings.Character.Manasteal.ToString(ManaStealAmount));
+                            // Checks if ManaStealAmount is less than 0, if so, sets the text to "0"
+                            if (ManaStealAmount < 0)
+                            {
+                                mManaSteal?.SetText(Strings.Character.Manasteal.ToString(0));
+                            }
+                            else
+                            {
+                                mManaSteal?.SetText(Strings.Character.Manasteal.ToString($"0 ({ManaStealAmount})"));
+                            }
 
                             break;
                     }
