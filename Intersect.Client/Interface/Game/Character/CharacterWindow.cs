@@ -494,11 +494,11 @@ namespace Intersect.Client.Interface.Game.Character
                             // Checks if ManaStealAmount is less than 0, if so, sets the text to "0"
                             if (ManaStealAmount < 0)
                             {
-                                mManaSteal?.SetText(Strings.Character.Manasteal.ToString(0));
+                                mManaSteal?.SetText(Strings.Character.Manasteal.ToString($"0 ({ManaStealAmount})"));
                             }
                             else
                             {
-                                mManaSteal?.SetText(Strings.Character.Manasteal.ToString($"0 ({ManaStealAmount})"));
+                                mManaSteal?.SetText(Strings.Character.Manasteal.ToString(ManaStealAmount));
                             }
 
                             break;
