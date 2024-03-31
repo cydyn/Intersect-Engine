@@ -1466,20 +1466,23 @@ namespace Intersect.Server.Entities
             base.TryAttack(target, projectile, parentSpell, parentItem, projectileDir);
         }
 
-        protected override void ReactToDamage()
+        protected override void ReactToDamage(Vital vital)
         {
             if (IsDead() || IsDisposed)
             {
-                base.ReactToDamage();
+                base.ReactToDamage(vital);
                 return;
             }
 
-            foreach (var trigger in CachedEquipmentOnDamageTriggers)
+            if (vital == Vital.Health)
             {
-                EnqueueStartCommonEvent(trigger);
+                foreach (var trigger in CachedEquipmentOnDamageTriggers)
+                {
+                    EnqueueStartCommonEvent(trigger);
+                }
             }
 
-            base.ReactToDamage();
+            base.ReactToDamage(vital);
         }
 
         protected override void CheckForOnhitAttack(Entity enemy, bool isAutoAttack)
@@ -5780,7 +5783,7 @@ namespace Intersect.Server.Entities
         [NotMapped, JsonIgnore]
         private List<EventBase> CachedEquipmentOnDamageTriggers { get; set; } = new List<EventBase>();
 
-        private void CacheEquipmentTriggers()
+        public void CacheEquipmentTriggers()
         {
             CachedEquipmentOnHitTriggers.Clear();
             CachedEquipmentOnDamageTriggers.Clear();
