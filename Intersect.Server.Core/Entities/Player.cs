@@ -5749,7 +5749,7 @@ namespace Intersect.Server.Entities
         [NotMapped, JsonIgnore]
         private List<EventBase> CachedEquipmentOnDamageTriggers { get; set; } = new List<EventBase>();
 
-        private void CacheEquipmentTriggers()
+        public void CacheEquipmentTriggers()
         {
             CachedEquipmentOnHitTriggers.Clear();
             CachedEquipmentOnDamageTriggers.Clear();
