@@ -218,12 +218,6 @@ namespace Intersect.Server.Entities
         [NotMapped, JsonIgnore]
         public bool IsFading { get; set; }
 
-        /// <summary>
-        /// Reference stored of the last weapon used for an auto-attack
-        /// </summary>
-        [NotMapped, JsonIgnore]
-        public ItemBase LastAttackingWeapon { get; set; }
-
         // Instancing
         public MapInstanceType InstanceType { get; set; } = MapInstanceType.Overworld;
 
@@ -1469,7 +1463,6 @@ namespace Intersect.Server.Entities
         {
             if (isAutoAttack)
             {
-                EnqueueStartCommonEvent(LastAttackingWeapon?.GetEventTrigger(ItemEventTriggers.OnHit));
                 foreach (var trigger in CachedEquipmentOnHitTriggers)
                 {
                     EnqueueStartCommonEvent(trigger);
@@ -1583,8 +1576,6 @@ namespace Intersect.Server.Entities
                     }
                 }
             }
-
-            LastAttackingWeapon = weapon;
 
             if (weapon != null)
             {
@@ -5769,7 +5760,7 @@ namespace Intersect.Server.Entities
 
                 // We have special logic for handling weapons, so the player can't hot-swap their weapon and get a different on-hit event to proc
                 // As a result, don't cache them, instead use property "LastAttackingWeapon"
-                if (onHit != null && slot != Options.WeaponIndex)
+                if (onHit != null)
                 {
                     CachedEquipmentOnHitTriggers.Add(onHit);
                 }
