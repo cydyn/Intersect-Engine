@@ -30,7 +30,7 @@ public static class DiscordPresenceManager
                 },
                 Assets = new Assets
                 {
-                    LargeImageKey = "intersect-logo-qu", // Klucz obrazka do wyświetlenia
+                    LargeImageKey = "westerre", // Klucz obrazka do wyświetlenia
                     LargeImageText = "Westerre" // Tekst pod dużym obrazkiem
                 }
             };
