@@ -226,7 +226,7 @@ namespace Intersect.Client.MonoGame
                 base.Update(gameTime);
             { 
                 // Przykładowe wywołanie aktualizacji Discord Rich Presence
-                DiscordPresenceManager.UpdatePresence("In Game");
+                DiscordPresenceManager.UpdatePresence("W grze");
             }
 
             if (mUpdater != null)
