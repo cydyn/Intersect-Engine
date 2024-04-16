@@ -13,6 +13,7 @@ using Intersect.Client.MonoGame.Input;
 using Intersect.Client.MonoGame.Network;
 using Intersect.Configuration;
 using Intersect.Updater;
+using DiscordRPC;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -162,6 +163,12 @@ namespace Intersect.Client.MonoGame
         {
             base.Initialize();
 
+            {
+                string applicationId = "1229737105186492456"; // Zastąp własnym Application ID z portalu Dewelopera Discord
+                DiscordPresenceManager.Initialize(applicationId);
+            }
+
+
             if (mUpdater != null)
             {
                 //Set the size of the updater screen before applying graphic changes.
@@ -216,6 +223,12 @@ namespace Intersect.Client.MonoGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+                base.Update(gameTime);
+            { 
+                // Przykładowe wywołanie aktualizacji Discord Rich Presence
+                DiscordPresenceManager.UpdatePresence("In Game");
+            }
+
             if (mUpdater != null)
             {
                 if (mUpdater.CheckUpdaterContentLoaded())
@@ -541,6 +554,10 @@ namespace Intersect.Client.MonoGame
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
+
+            {
+                DiscordPresenceManager.Dispose();
+            }
 
             if (!disposing)
             {
