@@ -8,6 +8,7 @@ using Intersect.Client.Framework.Gwen.Control;
 using Intersect.Client.Framework.Gwen.Control.EventArguments;
 using Intersect.Client.General;
 using Intersect.Client.Localization;
+using Intersect.Client.MonoGame;
 using Intersect.Client.Networking;
 using Intersect.Enums;
 using Intersect.GameObjects;
@@ -218,10 +219,10 @@ namespace Intersect.Client.Interface.Game.Character
             {
                 return;
             }
-
             mCharacterName.Text = Globals.Me.Name;
             mCharacterLevelAndClass.Text = Strings.Character.LevelAndClass.ToString(
                 Globals.Me.Level, ClassBase.GetName(Globals.Me.Class)
+
             );
 
             //Load Portrait

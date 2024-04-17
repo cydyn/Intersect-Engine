@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DiscordRPC;
 using Intersect.Client.Framework.Content;
+using Intersect.Client.General;
+using Intersect.GameObjects;
 
 namespace Intersect.Client.MonoGame;
 public static class DiscordPresenceManager
@@ -33,10 +35,12 @@ public static class DiscordPresenceManager
 
             try
             {
+                string guildDetails = string.IsNullOrEmpty(Globals.Me.Guild) ? "Gildia: Brak" : $"Gildia: {Globals.Me.Guild}";
+
                 var presence = new RichPresence
                 {
-                    State = currentState,
-                    Details = "Gra w Westerre",
+                    State = $"{ClassBase.GetName(Globals.Me.Class)}, Lvl: {Globals.Me.Level}, {guildDetails}",
+                    Details = $"Postać: {Globals.Me.Name}", 
                     Assets = new Assets
                     {
                         LargeImageKey = "westerre",
@@ -54,7 +58,7 @@ public static class DiscordPresenceManager
                 client.SetPresence(presence);
 
                 // Poczekaj przez 15 sekund, a następnie zaktualizuj obecność ponownie
-                await Task.Delay(15000);
+                await Task.Delay(1000);
 
                 isUpdatingPresence = false;
 
