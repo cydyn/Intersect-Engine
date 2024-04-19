@@ -782,6 +782,15 @@ namespace Intersect.Client.Localization
 
         }
 
+        public partial struct Text
+        {
+
+            public static LocalizedString back = @"Main Menu";
+
+            public static LocalizedString title = @"Credits";
+
+        }
+
         public partial struct Debug
         {
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -1715,6 +1724,9 @@ namespace Intersect.Client.Localization
 
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public static LocalizedString Title = @"Main Menu";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString text = @"Credits";
         }
 
         public partial struct Settings

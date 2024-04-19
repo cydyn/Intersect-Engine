@@ -22,9 +22,14 @@ public partial class MainMenuWindow : Window
     private readonly Button _buttonRegister;
     private readonly Button _buttonSettings;
     private readonly Button _buttonStart;
+<<<<<<< HEAD
     private readonly Button _buttonDiscord;
     private readonly Button _buttonFacebook;
+=======
+    private readonly Button _buttontext;
+>>>>>>> a65dba28 (Aktualizacje)
     private readonly MainMenu _mainMenu;
+
 
     // ReSharper disable once SuggestBaseTypeForParameterInConstructor
     public MainMenuWindow(Canvas canvas, MainMenu mainMenu) : base(canvas, Strings.MainMenu.Title, false, $"{nameof(MainMenuWindow)}_{(ClientContext.IsSinglePlayer ? "singleplayer" : "online")}")
@@ -37,6 +42,13 @@ public partial class MainMenuWindow : Window
             Text = Strings.MainMenu.Credits,
         };
         _buttonCredits.Clicked += ButtonCreditsOnClicked;
+
+        _buttontext = new Button(this, nameof(_buttontext))
+        {
+            IsTabable = true,
+            Text = Strings.MainMenu.text,
+        };
+        _buttontext.Clicked += ButtontextOnClicked;
 
         _buttonExit = new Button(this, nameof(_buttonExit))
         {
@@ -100,6 +112,9 @@ public partial class MainMenuWindow : Window
 
     private void ButtonCreditsOnClicked(Base sender, ClickedEventArgs arguments) =>
         _mainMenu.SwitchToWindow<CreditsWindow>();
+
+    private void ButtontextOnClicked(Base sender, ClickedEventArgs arguments) =>
+    _mainMenu.SwitchToWindow<textWindow>();
 
     private static void ButtonExitOnClicked(Base sender, ClickedEventArgs arguments)
     {

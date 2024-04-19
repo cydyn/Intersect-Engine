@@ -31,6 +31,8 @@ namespace Intersect.Client.Interface.Menu
 
         private readonly CreditsWindow mCreditsWindow;
 
+        private readonly textWindow mtextWindow;
+
         private readonly ForgotPasswordWindow mForgotPasswordWindow;
 
         private readonly LoginWindow mLoginWindow;
@@ -92,6 +94,8 @@ namespace Intersect.Client.Interface.Menu
 
             //Credits Controls
             mCreditsWindow = new CreditsWindow(mMenuCanvas, this);
+            //text controls
+            mtextWindow = new textWindow(mMenuCanvas, this);
         }
 
         ~MainMenu()
@@ -147,6 +151,7 @@ namespace Intersect.Client.Interface.Menu
             mRegisterWindow.Hide();
             mSettingsWindow.Hide();
             mCreditsWindow.Hide();
+            mtextWindow.Hide();
             mForgotPasswordWindow.Hide();
             mResetPasswordWindow.Hide();
             if (mCreateCharacterWindow != null)
@@ -217,6 +222,7 @@ namespace Intersect.Client.Interface.Menu
             mLoginWindow.Hide();
             mRegisterWindow.Hide();
             mSettingsWindow.Hide();
+            mtextWindow.Hide();
             mSelectCharacterWindow.Hide();
             mCreateCharacterWindow.Show();
             mCreateCharacterWindow.Init();
@@ -238,6 +244,10 @@ namespace Intersect.Client.Interface.Menu
             else if (typeof(TMainMenuWindow) == typeof(CreditsWindow))
             {
                 mCreditsWindow.Show();
+            }
+            else if (typeof(TMainMenuWindow) == typeof(textWindow))
+            {
+                mtextWindow.Show();
             }
         }
 
