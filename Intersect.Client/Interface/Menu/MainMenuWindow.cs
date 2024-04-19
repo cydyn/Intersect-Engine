@@ -22,12 +22,9 @@ public partial class MainMenuWindow : Window
     private readonly Button _buttonRegister;
     private readonly Button _buttonSettings;
     private readonly Button _buttonStart;
-<<<<<<< HEAD
     private readonly Button _buttonDiscord;
     private readonly Button _buttonFacebook;
-=======
     private readonly Button _buttontext;
->>>>>>> a65dba28 (Aktualizacje)
     private readonly MainMenu _mainMenu;
 
 
