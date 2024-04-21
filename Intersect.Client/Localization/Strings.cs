@@ -1106,6 +1106,9 @@ namespace Intersect.Client.Localization
 
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public static LocalizedString Spells = @"Spell Book";
+
+            public static LocalizedString addon = @"Addon";
+
         }
 
         public partial struct General

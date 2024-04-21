@@ -137,7 +137,7 @@ namespace Intersect.Client.Interface.Game
 
             mHelpBackground = new ImagePanel(mMenuContainer, "HelpContainer");
             mHelpButton = new Button(mHelpBackground, "HelpButton");
-            mHelpButton.SetToolTipText("Pomoc");
+            mHelpButton.SetToolTipText(Strings.GameMenu.addon);
             mHelpButton.Clicked += HelpButton_Clicked;
 
             mMenuContainer.LoadJsonUi(GameContentManager.UI.InGame, Graphics.Renderer.GetResolutionString());
