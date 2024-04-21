@@ -2192,8 +2192,19 @@ namespace Intersect.Server.Networking
             player.SendPacket(new FriendsPacket(online, offline.ToArray()));
         }
 
-        //FriendRequestPacket
-        public static void SendFriendRequest(Player player, Player partner)
+        public static void Sendaddone(Player player)
+        {
+            if (player == null)
+            {
+                return;
+            }
+
+            player.StartCommonEventsWithTrigger(CommonEventTrigger.addon);
+            player.SendPacket(new startaddon());
+        }
+
+            //FriendRequestPacket
+            public static void SendFriendRequest(Player player, Player partner)
         {
             player.SendPacket(new FriendRequestPacket(partner.Id, partner.Name));
         }

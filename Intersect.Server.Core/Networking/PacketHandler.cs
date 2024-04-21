@@ -2341,6 +2341,17 @@ namespace Intersect.Server.Networking
             PacketSender.SendFriends(player);
         }
 
+        public void HandlePacket(Client client, AddonsPacket packet)
+        {
+            var player = client?.Entity;
+            if (player == null)
+            {
+                return;
+            }
+        
+            PacketSender.Sendaddone(player);
+        }
+
         //UpdateFriendsPacket
         public void HandlePacket(Client client, UpdateFriendsPacket packet)
         {

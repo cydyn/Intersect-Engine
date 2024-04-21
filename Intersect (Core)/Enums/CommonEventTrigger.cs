@@ -39,5 +39,7 @@ namespace Intersect.Enums
         MapChanged,
 
         UserVariableChange,
+
+        addon,
     }
 }
