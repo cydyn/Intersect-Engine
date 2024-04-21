@@ -1014,6 +1014,8 @@ namespace Intersect.Client.Localization
 
             public static LocalizedString spells = @"Spell Book";
 
+            public static LocalizedString addon = @"Addon";
+
         }
 
         public partial struct General
