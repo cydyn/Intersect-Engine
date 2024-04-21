@@ -2793,6 +2793,7 @@ Tick timer saved in server config.json.";
                 {16, @"Inventory Changed"},
                 {17, @"Map Changed"},
                 {18, @"User Variable Changed"},
+                {19, @"addon" },
             };
 
             public static LocalizedString conditions = @"Conditions";

@@ -1,6 +1,7 @@
 using System;
 
 using Intersect.Admin.Actions;
+using Intersect.Client.Entities;
 using Intersect.Client.Entities.Events;
 using Intersect.Client.General;
 using Intersect.Client.Interface.Game;
@@ -384,6 +385,11 @@ namespace Intersect.Client.Networking
         public static void SendRequestFriends()
         {
             Network.SendPacket(new RequestFriendsPacket());
+        }
+
+        public static void SendAddonPacket()
+        {
+            Network.SendPacket(new AddonsPacket());
         }
 
         public static void SendAddFriend(string name)

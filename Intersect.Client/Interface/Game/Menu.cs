@@ -1,4 +1,4 @@
-﻿using Intersect.Client.Core;
+using Intersect.Client.Core;
 using Intersect.Client.Framework.File_Management;
 using Intersect.Client.Framework.Graphics;
 using Intersect.Client.Framework.Gwen.Control;
@@ -40,6 +40,10 @@ namespace Intersect.Client.Interface.Game
         private readonly ImagePanel mMenuBackground;
 
         private readonly Button mMenuButton;
+
+        private readonly ImagePanel mHelpBackground;
+
+        private readonly Button mHelpButton;
 
         //Menu Container
         private readonly ImagePanel mMenuContainer;
@@ -130,6 +134,11 @@ namespace Intersect.Client.Interface.Game
             mMenuButton = new Button(mMenuBackground, "MenuButton");
             mMenuButton.SetToolTipText(Strings.GameMenu.Menu);
             mMenuButton.Clicked += MenuButtonClicked;
+
+            mHelpBackground = new ImagePanel(mMenuContainer, "HelpContainer");
+            mHelpButton = new Button(mHelpBackground, "HelpButton");
+            mHelpButton.SetToolTipText("Pomoc");
+            mHelpButton.Clicked += HelpButton_Clicked;
 
             mMenuContainer.LoadJsonUi(GameContentManager.UI.InGame, Graphics.Renderer.GetResolutionString());
 
@@ -402,6 +411,12 @@ namespace Intersect.Client.Interface.Game
         private void CharacterButton_Clicked(Base sender, ClickedEventArgs arguments)
         {
             ToggleCharacterWindow();
+        }
+
+        private void HelpButton_Clicked(Base sender, ClickedEventArgs arguments)
+        {
+            // Zakładając, że PacketSender to klasa odpowiedzialna za wysyłanie pakietów
+            PacketSender.SendAddonPacket();  // Ta metoda musi być zdefiniowana w klasie PacketSender
         }
     }
 

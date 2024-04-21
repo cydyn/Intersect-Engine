@@ -6970,6 +6970,8 @@ namespace Intersect.Server.Entities
                                 break;
                             case CommonEventTrigger.Autorun:
                                 break;
+                            case CommonEventTrigger.addon:
+                                break;
                             case CommonEventTrigger.PVPKill:
                                 //Add victim as a parameter
                                 newEvent.SetParam("victim", param);

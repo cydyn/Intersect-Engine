@@ -2060,6 +2060,12 @@ namespace Intersect.Client.Networking
             Interface.Interface.GameUi?.NotifyUpdateFriendsList();
         }
 
+        public void HandlePacket(IPacketSender packetSender, startaddon packet)
+        {
+
+        }
+
+
         //FriendRequestPacket
         public void HandlePacket(IPacketSender packetSender, FriendRequestPacket packet)
         {
