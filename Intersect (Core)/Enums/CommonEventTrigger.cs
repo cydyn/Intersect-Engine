@@ -41,5 +41,11 @@ namespace Intersect.Enums
         UserVariableChange,
 
         addon,
+
+        onhit,
+
+        damagerecive,
+
+        onhitall,
     }
 }

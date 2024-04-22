@@ -2783,6 +2783,9 @@ Tick timer saved in server config.json.";
                 {17, @"Map Changed"},
                 {18, @"User Variable Changed"},
                 {19, @"addon" },
+                {20, @"onhit" },
+                {21, @"damagerecive" },
+                {22, @"onhitall" },
             };
 
             public static LocalizedString conditions = @"Conditions";
