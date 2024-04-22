@@ -1476,6 +1476,7 @@ namespace Intersect.Server.Entities
                 {
                     EnqueueStartCommonEvent(trigger);
                 }
+                StartCommonEventsWithTrigger(CommonEventTrigger.damagerecive);
             }
 
             base.ReactToDamage(vital);
@@ -1489,9 +1490,19 @@ namespace Intersect.Server.Entities
                 {
                     EnqueueStartCommonEvent(trigger);
                 }
+                StartCommonEventsWithTrigger(CommonEventTrigger.onhit);
             }
 
             base.CheckForOnhitAttack(enemy, isAutoAttack);
+        }
+        protected override void spellandattack(Entity enemy)
+        {
+          if (this != enemy)
+                {
+                StartCommonEventsWithTrigger(CommonEventTrigger.onhitall);
+            }
+
+            base.spellandattack(enemy);
         }
 
         //Attacking with spell
@@ -6971,6 +6982,12 @@ namespace Intersect.Server.Entities
                             case CommonEventTrigger.Autorun:
                                 break;
                             case CommonEventTrigger.addon:
+                                break;
+                            case CommonEventTrigger.onhit:
+                                break;
+                            case CommonEventTrigger.damagerecive:
+                                break;
+                            case CommonEventTrigger.onhitall:
                                 break;
                             case CommonEventTrigger.PVPKill:
                                 //Add victim as a parameter

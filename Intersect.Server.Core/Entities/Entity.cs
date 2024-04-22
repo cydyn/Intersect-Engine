@@ -2188,6 +2188,7 @@ namespace Intersect.Server.Entities
 
             //Check for any onhit damage bonus effects!
             CheckForOnhitAttack(enemy, isAutoAttack);
+            spellandattack(enemy);
 
             // Add a timer before able to make the next move.
             if (this is Npc thisNpc)
@@ -2199,6 +2200,21 @@ namespace Intersect.Server.Entities
         protected virtual void CheckForOnhitAttack(Entity enemy, bool isAutoAttack)
         {
             if (isAutoAttack && !enemy.IsDead()) //Ignore spell damage.
+            {
+                foreach (var status in CachedStatuses)
+                {
+                    if (status.Type == SpellEffect.OnHit)
+                    {
+                        TryAttack(enemy, status.Spell, true);
+                        status.RemoveStatus();
+                    }
+                }
+            }
+        }
+
+        protected virtual void spellandattack(Entity enemy)
+        {
+            if (!enemy.IsDead()) //Ignore spell damage.
             {
                 foreach (var status in CachedStatuses)
                 {
