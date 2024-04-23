@@ -46,6 +46,5 @@ namespace Intersect.Enums
 
         damagerecive,
 
-        onhitall,
     }
 }

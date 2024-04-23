@@ -1495,15 +1495,6 @@ namespace Intersect.Server.Entities
 
             base.CheckForOnhitAttack(enemy, isAutoAttack);
         }
-        protected override void spellandattack(Entity enemy)
-        {
-          if (this != enemy)
-                {
-                StartCommonEventsWithTrigger(CommonEventTrigger.onhitall);
-            }
-
-            base.spellandattack(enemy);
-        }
 
         //Attacking with spell
         public override void TryAttack(
@@ -6986,8 +6977,6 @@ namespace Intersect.Server.Entities
                             case CommonEventTrigger.onhit:
                                 break;
                             case CommonEventTrigger.damagerecive:
-                                break;
-                            case CommonEventTrigger.onhitall:
                                 break;
                             case CommonEventTrigger.PVPKill:
                                 //Add victim as a parameter
