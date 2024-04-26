@@ -43,6 +43,8 @@ namespace Intersect.GameObjects.Events
         MapZoneTypeIs,
 
         CheckEquipment,
+
+        SpellActive,
     }
 
     public partial class Condition
@@ -305,5 +307,13 @@ namespace Intersect.GameObjects.Events
         public override ConditionTypes Type { get; } = ConditionTypes.CheckEquipment;
 
         public string Name { get; set; }
+    }
+
+    public class SpellIsActive : Condition
+    {
+        public override ConditionTypes Type { get; } = ConditionTypes.SpellActive;
+
+
+            public Guid SpellId { get; set; }
     }
 }
