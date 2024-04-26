@@ -363,7 +363,6 @@ namespace Intersect.Editor.Forms.Editors.Events.Event_Commands
                     {
                         cmbNpcs.SelectedIndex = 0;
                     }
-
                     break;
                 case ConditionTypes.GenderIs:
                     Condition = new GenderIsCondition();
@@ -407,6 +406,10 @@ namespace Intersect.Editor.Forms.Editors.Events.Event_Commands
                     {
                         cmbCheckEquippedSlot.SelectedIndex = 0;
                     }
+
+                    break;
+                case ConditionTypes.SpellActive:
+                    Condition = new SpellIsActive();
 
                     break;
                 default:
@@ -574,6 +577,11 @@ namespace Intersect.Editor.Forms.Editors.Events.Event_Commands
                         cmbCheckEquippedSlot.Items.Add(slot);
                     }
 
+                    break;
+                case ConditionTypes.SpellActive:
+                    grpSpell.Show();
+                    cmbSpell.Items.Clear();
+                    cmbSpell.Items.AddRange(SpellBase.Names);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -1398,12 +1406,14 @@ namespace Intersect.Editor.Forms.Editors.Events.Event_Commands
         {
             cmbCheckEquippedSlot.SelectedIndex = Options.EquipmentSlots.IndexOf(condition.Name);
         }
-
+        private void SetupFormValues(SpellIsActive condition)
+        {
+            cmbSpell.SelectedIndex = SpellBase.ListIndex(condition.SpellId);
+        }
 
         #endregion
 
         #region "SaveFormValues"
-
         private void SaveFormValues(VariableIsCondition condition)
         {
             if (rdoGlobalVariable.Checked)
@@ -1591,10 +1601,13 @@ namespace Intersect.Editor.Forms.Editors.Events.Event_Commands
                 condition.ZoneType = (MapZone)cmbMapZoneType.SelectedIndex;
             }
         }
-
         private void SaveFormValues(CheckEquippedSlot condition)
         {
             condition.Name = Options.EquipmentSlots[cmbCheckEquippedSlot.SelectedIndex];
+        }
+        private void SaveFormValues(SpellIsActive condition)
+        {
+            condition.SpellId = SpellBase.IdFromList(cmbSpell.SelectedIndex);
         }
         #endregion
 
