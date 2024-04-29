@@ -482,6 +482,7 @@ namespace Intersect.Server.Entities
                 case SpellEffect.OnHit:
                 case SpellEffect.Taunt:
                 case SpellEffect.Vampirism:
+                case SpellEffect.Antyheal:
                 case null:
                     return false;
 
@@ -510,6 +511,7 @@ namespace Intersect.Server.Entities
                 case SpellEffect.OnHit:
                 case SpellEffect.Taunt:
                 case SpellEffect.Vampirism:
+                case SpellEffect.Antyheal:
                 case null:
                     return false;
 

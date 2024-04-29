@@ -2341,6 +2341,7 @@ namespace Intersect.Client.Localization
                 {12, @"Taunt"},
                 {13, @"KnockBack"},
                 {14, @"Vampirism"},
+                {15, @"Antyheal"},
             };
 
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]

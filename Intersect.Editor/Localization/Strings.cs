@@ -5234,6 +5234,7 @@ Tick timer saved in server config.json.";
                 {12, @"Taunt"},
                 {13, @"Knockback"},
                 {14, @"Vampirism"},
+                {15, @"Antyheal"},
             };
 
             public static LocalizedString effectgroup = @"Effect";

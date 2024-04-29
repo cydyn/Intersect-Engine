@@ -325,6 +325,9 @@ namespace Intersect.Server.Localization
             public readonly LocalizedString vampirism = @"VAMPIRISM!";
 
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public readonly LocalizedString antyheal = @"ANTYHEAL!";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public readonly LocalizedString levelreq = @"You are not a high enough level to use this ability.";
 
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -399,6 +402,7 @@ namespace Intersect.Server.Localization
                     {12, @"TAUNT!"},
                     {13, @"KNOCKBACK!"},
                     {14, @"VAMPIRISM!"},
+                    {15, @"ANTYHEAL!"},
                 }
             );
 

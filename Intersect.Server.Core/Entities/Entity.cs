@@ -2086,6 +2086,7 @@ namespace Intersect.Server.Entities
 
             var thisPlayer = this as Player;
             var hasvampirism = CachedStatuses.Any(status => status.Type == SpellEffect.Vampirism);
+            var hasantyheal = CachedStatuses.Any(status => status.Type == SpellEffect.Antyheal);
             //Check for lifesteal/manasteal
             if (baseDamage > 0 && this != enemy)
                 if (this is Player && !(enemy is Resource))
@@ -2099,6 +2100,10 @@ namespace Intersect.Server.Entities
                     if (hasvampirism)
                     {
                         lifestealRate += 0.10f; // Jeśli lifestealRate jest ujemny, ustaw na zero
+                    }
+                    if (hasantyheal)
+                    {
+                        lifestealRate = 0;
                     }
 
 
@@ -2125,6 +2130,10 @@ namespace Intersect.Server.Entities
                     if (hasvampirism)
                     {
                         manastealRate += 0.10f; // Jeśli lifestealRate jest ujemny, ustaw na zero
+                    }
+                    if (hasantyheal)
+                    {
+                        manastealRate = 0;
                     }
 
                     var idealManaRecovered = manastealRate * baseDamage;
