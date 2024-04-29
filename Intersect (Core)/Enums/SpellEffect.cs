@@ -29,5 +29,7 @@ namespace Intersect.Enums
         Taunt = 12,
 
         Knockback = 13,
+
+        Vampirism = 14,
     }
 }

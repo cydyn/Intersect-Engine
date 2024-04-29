@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -38,6 +38,7 @@ namespace Intersect.Server.Entities.Combat
             SpellEffect.OnHit,
             SpellEffect.Shield,
             SpellEffect.Transform,
+            SpellEffect.Vampirism,
         };
 
         public static List<SpellEffect> InterruptStatusses = new List<SpellEffect>()
