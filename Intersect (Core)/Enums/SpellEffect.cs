@@ -31,5 +31,7 @@ namespace Intersect.Enums
         Knockback = 13,
 
         Vampirism = 14,
+
+        Antyheal = 15,
     }
 }

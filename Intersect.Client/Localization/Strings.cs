@@ -2226,6 +2226,7 @@ namespace Intersect.Client.Localization
                 {12, @"Taunt"},
                 {13, @"KnockBack"},
                 {14, @"Vampirism"},
+                {15, @"Antyheal"},
             };
 
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
@@ -2275,6 +2276,7 @@ namespace Intersect.Client.Localization
                 {12, @"Taunts Target"},
                 {13, @"Knockback"},
                 {14, @"Vampirism Target"},
+                {15, @"Antyheal Target"},
             };
 
         }
