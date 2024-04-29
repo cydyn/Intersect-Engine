@@ -2085,16 +2085,23 @@ namespace Intersect.Server.Entities
             CombatTimer = Timing.Global.Milliseconds + Options.CombatTime;
 
             var thisPlayer = this as Player;
-
+            var hasvampirism = CachedStatuses.Any(status => status.Type == SpellEffect.Vampirism);
             //Check for lifesteal/manasteal
             if (baseDamage > 0 && this != enemy)
                 if (this is Player && !(enemy is Resource))
             {
-                var lifestealRate = thisPlayer.GetEquipmentBonusEffect(ItemEffect.Lifesteal) / 100f;
-                if (lifestealRate < 0)
-                {
-                    lifestealRate = 0; // Jeśli lifestealRate jest ujemny, ustaw na zero
-                }
+                    var lifestealRate = thisPlayer.GetEquipmentBonusEffect(ItemEffect.Lifesteal) / 100f;
+                    if (lifestealRate < 0)
+                    {
+                        lifestealRate = 0; // Jeśli lifestealRate jest ujemny, ustaw na zero
+                    }
+
+                    if (hasvampirism)
+                    {
+                        lifestealRate += 0.10f; // Jeśli lifestealRate jest ujemny, ustaw na zero
+                    }
+
+
                 var idealHealthRecovered = lifestealRate * baseDamage;
                 var actualHealthRecovered = Math.Min(enemyVitals[(int)Vital.Health], idealHealthRecovered);
 
@@ -2107,38 +2114,44 @@ namespace Intersect.Server.Entities
                         Strings.Combat.addsymbol + (int)actualHealthRecovered,
                         CustomColors.Combat.Heal
                     );
-                }
+                    }
 
-                var manastealRate = (thisPlayer.GetEquipmentBonusEffect(ItemEffect.Manasteal) / 100f);
-                if (manastealRate < 0)
-                {
-                    manastealRate = 0; // Jeśli manastealRate jest ujemny, ustaw na zero
-                }
-                var idealManaRecovered = manastealRate * baseDamage;
-                var actualManaRecovered = Math.Min(enemyVitals[(int)Vital.Mana], idealManaRecovered);
+                    var manastealRate = thisPlayer.GetEquipmentBonusEffect(ItemEffect.Manasteal) / 100f;
+                    if (lifestealRate < 0)
+                    {
+                        manastealRate = 0; // Jeśli lifestealRate jest ujemny, ustaw na zero
+                    }
 
-                if (actualManaRecovered > 0)
-                {
-                    // Don't send any +0 msg's.
-                    AddVital(Vital.Mana, (int)actualManaRecovered);
-                    enemy.SubVital(Vital.Mana, (int)actualManaRecovered);
-                    PacketSender.SendActionMsg(
-                        this,
-                        Strings.Combat.addsymbol + (int)actualManaRecovered,
-                        CustomColors.Combat.AddMana
-                    );
-                }
+                    if (hasvampirism)
+                    {
+                        manastealRate += 0.10f; // Jeśli lifestealRate jest ujemny, ustaw na zero
+                    }
 
-                var remainingManaRecovery = idealManaRecovered - actualManaRecovered;
-                if (remainingManaRecovery > 0)
-                {
-                    // If the mana recovered is less than it should be, deal the remainder as bonus damage
-                    enemy.SubVital(Vital.Health, (int)remainingManaRecovery);
-                    PacketSender.SendActionMsg(
-                        enemy,
-                        Strings.Combat.removesymbol + remainingManaRecovery,
-                        CustomColors.Combat.TrueDamage
-                    );
+                    var idealManaRecovered = manastealRate * baseDamage;
+                    var actualManaRecovered = Math.Min(enemy.GetVital(Vital.Mana), idealManaRecovered);
+
+                    if (actualManaRecovered > 0)
+                    {
+                        // Odzyskaj many dla atakującego gracza i odejmij many przeciwnika
+                        thisPlayer.AddVital(Vital.Mana, (int)actualManaRecovered);
+                        enemy.SubVital(Vital.Mana, (int)actualManaRecovered);
+                        PacketSender.SendActionMsg(
+                            thisPlayer,
+                            Strings.Combat.addsymbol + (int)actualManaRecovered,
+                            CustomColors.Combat.AddMana
+                        );
+                    }
+
+                    var remainingManaRecovery = idealManaRecovered - actualManaRecovered;
+                    if (remainingManaRecovery > 0)
+                    {
+                        // Jeśli odzyskana many jest mniejsza niż oczekiwana, zadaj resztę jako dodatkowe obrażenia
+                        enemy.SubVital(Vital.Health, (int)remainingManaRecovery);
+                        PacketSender.SendActionMsg(
+                            enemy,
+                            Strings.Combat.removesymbol + (int)remainingManaRecovery,
+                            CustomColors.Combat.TrueDamage
+                                );
                 }
             }
 

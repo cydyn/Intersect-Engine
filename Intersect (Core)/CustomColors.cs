@@ -216,6 +216,8 @@ namespace Intersect
 
             public Color TrueDamage = new Color(255, 255, 255, 255);
 
+            public Color Vampirism = new Color(255, 255, 255, 255);
+
         }
 
         public sealed partial class ItemsNamespace
