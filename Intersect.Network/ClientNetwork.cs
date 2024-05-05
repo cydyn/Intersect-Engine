@@ -1,5 +1,6 @@
-﻿using System.Collections.Concurrent;
+using System.Collections.Concurrent;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using Intersect.Core;
 using Intersect.Logging;
@@ -55,7 +56,24 @@ namespace Intersect.Network
 
         public bool IsServerOnline => IsConnected;
 
-        public int Ping => (int)(Connections.FirstOrDefault()?.Statistics.Ping ?? -1);
+        public int Ping
+        {
+            get
+            {
+                // send a ping to the server
+        var reply = new Ping().Send(Configuration.Host, 5000, new byte[32], new PingOptions(64, true));
+
+                if (reply?.Status == IPStatus.Success)
+                {
+                    // return the roundtrip time in milliseconds (ms) as an integer value (no decimals)
+                    return (int) reply.RoundtripTime >= 0 ? (int) reply.RoundtripTime : 0;
+    }
+                else
+                {
+                    return 99999;
+                }
+            }
+        }
 
         public bool Connect()
         {
