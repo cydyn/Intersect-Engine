@@ -58,7 +58,7 @@ public static class DiscordPresenceManager
                 client.SetPresence(presence);
 
                 // Poczekaj przez 15 sekund, a następnie zaktualizuj obecność ponownie
-                await Task.Delay(1000);
+                await Task.Delay(5000);
 
                 isUpdatingPresence = false;
 
