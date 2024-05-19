@@ -980,11 +980,6 @@ namespace Intersect.Client.Core
         //Lighting
         private static void ClearDarknessTexture()
         {
-            // If we're not allowed to draw lighting, exit out.
-            if (!Globals.Database.EnableLighting)
-            {
-                return;
-            }
 
             if (sDarknessTexture == null)
             {
@@ -996,11 +991,6 @@ namespace Intersect.Client.Core
 
         private static void GenerateLightMap()
         {
-            // If we're not allowed to draw lighting, exit out.
-            if (!Globals.Database.EnableLighting)
-            {
-                return;
-            }
 
             var map = MapInstance.Get(Globals.Me.MapId);
             if (map == null)
@@ -1055,11 +1045,6 @@ namespace Intersect.Client.Core
 
         public static void DrawDarkness()
         {
-            // If we're not allowed to draw lighting, exit out.
-            if (!Globals.Database.EnableLighting)
-            {
-                return;
-            }
 
             var radialShader = Globals.ContentManager.GetShader("radialgradient");
             if (radialShader != null)
@@ -1076,11 +1061,6 @@ namespace Intersect.Client.Core
 
         public static void AddLight(int x, int y, int size, byte intensity, float expand, Color color)
         {
-            // If we're not allowed to draw lighting, exit out.
-            if (!Globals.Database.EnableLighting)
-            {
-                return;
-            }
 
             if (size == 0)
             {
@@ -1093,11 +1073,6 @@ namespace Intersect.Client.Core
 
         private static void DrawLights()
         {
-            // If we're not allowed to draw lighting, exit out.
-            if (!Globals.Database.EnableLighting)
-            {
-                return;
-            }
 
             var radialShader = Globals.ContentManager.GetShader("radialgradient");
             if (radialShader != null)
@@ -1126,11 +1101,6 @@ namespace Intersect.Client.Core
 
         public static void UpdatePlayerLight()
         {
-            // If we're not allowed to draw lighting, exit out.
-            if (!Globals.Database.EnableLighting)
-            {
-                return;
-            }
 
             //Draw Light Around Player
             var map = MapInstance.Get(Globals.Me.MapId);
