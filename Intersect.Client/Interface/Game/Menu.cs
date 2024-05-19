@@ -11,6 +11,7 @@ using Intersect.Client.Interface.Game.Spells;
 using Intersect.Client.Localization;
 using Intersect.Client.Networking;
 using Intersect.Enums;
+using Intersect.Client.Interface.Game.Map;
 using Intersect.GameObjects;
 
 namespace Intersect.Client.Interface.Game
@@ -44,6 +45,8 @@ namespace Intersect.Client.Interface.Game
         private readonly ImagePanel mHelpBackground;
 
         private readonly Button mHelpButton;
+
+        private readonly MinimapWindow mMinimapWindow;
 
         //Menu Container
         private readonly ImagePanel mMenuContainer;
@@ -151,6 +154,7 @@ namespace Intersect.Client.Interface.Game
             mQuestsWindow = new QuestsWindow(gameCanvas);
             mMapItemWindow = new MapItemWindow(gameCanvas);
             mGuildWindow = new GuildWindow(gameCanvas);
+            mMinimapWindow = new MinimapWindow(gameCanvas);
         }
 
         //Methods
@@ -164,6 +168,7 @@ namespace Intersect.Client.Interface.Game
             mQuestsWindow.Update(updateQuestLog);
             mMapItemWindow.Update();
             mGuildWindow.Update();
+            mMinimapWindow.Update();
         }
 
         public void UpdateFriendsList()
@@ -190,6 +195,7 @@ namespace Intersect.Client.Interface.Game
             mQuestsWindow.Hide();
             mSpellsWindow.Hide();
             mGuildWindow.Hide();
+            mMinimapWindow.Hide();
         }
 
         public void ToggleCharacterWindow()
@@ -204,6 +210,25 @@ namespace Intersect.Client.Interface.Game
                 mCharacterWindow.Show();
             }
         }
+
+        public void ToggleMinimapWindow()
+        {
+            if (!Options.Instance.MinimapOpts.EnableMinimapWindow)
+            {
+                return;
+            }
+
+            if (mMinimapWindow.IsVisible())
+            {
+                mMinimapWindow.Hide();
+            }
+            else
+            {
+                HideWindows();
+                mMinimapWindow.Show();
+            }
+        }
+
 
         public bool ToggleFriendsWindow()
         {

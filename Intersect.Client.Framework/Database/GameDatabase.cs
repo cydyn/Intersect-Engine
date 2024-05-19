@@ -114,8 +114,8 @@ namespace Intersect.Client.Framework.Database
             HideOthersOnWindowOpen = LoadPreference(nameof(HideOthersOnWindowOpen), true);
             AutoToggleChatLog = LoadPreference(nameof(AutoToggleChatLog), false);
             TargetAccountDirection = LoadPreference(nameof(TargetAccountDirection), false);
-            StickyTarget = LoadPreference(nameof(StickyTarget), false);
-            AutoTurnToTarget = LoadPreference(nameof(AutoTurnToTarget), false);
+            StickyTarget = LoadPreference(nameof(StickyTarget), true);
+            AutoTurnToTarget = LoadPreference(nameof(AutoTurnToTarget), true);
             FriendOverheadInfo = LoadPreference(nameof(FriendOverheadInfo), true);
             FriendOverheadHpBar = LoadPreference(nameof(FriendOverheadHpBar), false);
             GuildMemberOverheadInfo = LoadPreference(nameof(GuildMemberOverheadInfo), true);
