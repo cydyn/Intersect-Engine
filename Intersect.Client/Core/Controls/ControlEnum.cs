@@ -62,6 +62,8 @@ namespace Intersect.Client.Core.Controls
 
         OpenMinimap,
 
+        addon,
+
         OpenSettings,
 
         OpenDebugger,
