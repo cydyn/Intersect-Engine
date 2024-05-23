@@ -46,6 +46,10 @@ namespace Intersect.Client.Interface.Game
 
         private readonly Button mHelpButton;
 
+        private readonly ImagePanel mMinimapBackground;
+
+        private readonly Button mMinimapButton;
+
         private readonly MinimapWindow mMinimapWindow;
 
         //Menu Container
@@ -142,6 +146,11 @@ namespace Intersect.Client.Interface.Game
             mHelpButton = new Button(mHelpBackground, "HelpButton");
             mHelpButton.SetToolTipText(Strings.GameMenu.addon);
             mHelpButton.Clicked += HelpButton_Clicked;
+
+            mMinimapBackground = new ImagePanel(mMenuContainer, "MinimapContainer");
+            mMinimapButton = new Button(mMinimapBackground, "MinimapButton");
+            mMinimapButton.SetToolTipText(Strings.GameMenu.Minimap);
+            mMinimapButton.Clicked += MinimapButton_Clicked;
 
             mMenuContainer.LoadJsonUi(GameContentManager.UI.InGame, Graphics.Renderer.GetResolutionString());
 
@@ -442,6 +451,11 @@ namespace Intersect.Client.Interface.Game
         {
             // Zakładając, że PacketSender to klasa odpowiedzialna za wysyłanie pakietów
             PacketSender.SendAddonPacket();  // Ta metoda musi być zdefiniowana w klasie PacketSender
+        }
+
+        private void MinimapButton_Clicked(Base sender, ClickedEventArgs arguments)
+        {
+            ToggleMinimapWindow();
         }
     }
 

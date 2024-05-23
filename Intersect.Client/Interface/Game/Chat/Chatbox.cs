@@ -24,6 +24,22 @@ namespace Intersect.Client.Interface.Game.Chat
     public partial class Chatbox
     {
 
+        private List<string> forbiddenWords = new List<string> 
+        { 
+          "pierdolony", 
+          "pierdole", 
+          "chuj",
+          "kurwa",
+          "chujowo",
+          "Adolf Hitler",
+          "Jebac",
+          "Dziwka",
+          "Pizda",
+          "kurwisko",
+          "kutas",
+          "kutasa"
+        };
+
         private ComboBox mChannelCombobox;
 
         private Label mChannelLabel;
@@ -554,7 +570,6 @@ namespace Intersect.Client.Interface.Game.Chat
             if (string.IsNullOrWhiteSpace(msg) || string.Equals(msg, GetDefaultInputText(), StringComparison.Ordinal))
             {
                 mChatboxInput.Text = GetDefaultInputText();
-
                 return;
             }
 
@@ -562,17 +577,34 @@ namespace Intersect.Client.Interface.Game.Chat
             {
                 ChatboxMsg.AddMessage(new ChatboxMsg(Strings.Chatbox.toofast, Color.Red, ChatMessageType.Error));
                 mLastChatTime = Timing.Global.MillisecondsUtc + Options.MinChatInterval;
-
                 return;
             }
 
             mLastChatTime = Timing.Global.MillisecondsUtc + Options.MinChatInterval;
 
-            PacketSender.SendChatMsg(
-                msg, byte.Parse(mChannelCombobox.SelectedItem.UserData.ToString())
-            );
+            // Tutaj dodaj logikę cenzurowania wiadomości
+            msg = CensorMessage(msg);
+
+            PacketSender.SendChatMsg(msg, byte.Parse(mChannelCombobox.SelectedItem.UserData.ToString()));
 
             mChatboxInput.Text = GetDefaultInputText();
+        }
+
+        string CensorMessage(string message)
+        {
+            // Przykładowa implementacja cenzurowania poprzez sprawdzenie słów wulgaryzmów z listy forbiddenWords
+            string[] words = message.Split(' ');
+
+            foreach (var word in words)
+            {
+                if (forbiddenWords.Contains(word.ToLower()))
+                {
+                    // Zastępuje wulgarne słowo gwiazdkami o tej samej długości
+                    message = message.Replace(word, new string('*', word.Length));
+                }
+            }
+
+            return message;
         }
 
         string GetDefaultInputText()

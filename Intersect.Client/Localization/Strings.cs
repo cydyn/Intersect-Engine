@@ -725,6 +725,7 @@ namespace Intersect.Client.Localization
                 {"holdtozoomout", "Hold to Zoom Out:"},
                 {"togglefullscreen", "Toggle Fullscreen:"},
                 {"openminimap", @"Open Minimap:"},
+                {"addon", @"addon"},
                 // {"submit", "Submit"},
                 // {"cancel", "Cancel"},
                 // {"next", "Next"},
@@ -1016,6 +1017,8 @@ namespace Intersect.Client.Localization
             public static LocalizedString spells = @"Spell Book";
 
             public static LocalizedString addon = @"Addon";
+
+            public static LocalizedString Minimap = @"Minimapa";
 
         }
 
