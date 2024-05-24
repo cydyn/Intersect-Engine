@@ -1676,9 +1676,13 @@ Tick timer saved in server config.json.";
         public partial struct EventEquipItems
         {
 
+            public static LocalizedString EquipTitle = @"Equip Item";
+
             public static LocalizedString cancel = @"Cancel";
 
             public static LocalizedString item = @"Item:";
+
+            public static LocalizedString slot = @"Slot:";
 
             public static LocalizedString okay = @"Ok";
 
@@ -1898,6 +1902,8 @@ Tick timer saved in server config.json.";
             public static LocalizedString equipitem = @"Equip Player Item [{00}]";
 
             public static LocalizedString unequipitem = @"Unequip Player Item [{00}]";
+
+            public static LocalizedString unequipslot = @"Unequip Player Slot [{00}]";
 
             public static LocalizedString changespells = @"Change Player Spells [{00}]";
 
