@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -153,7 +153,6 @@ namespace Intersect.Client.Interface.Menu
             {
                 Hide();
                 mMainMenu.Show();
-                Interface.ShowError(Strings.Errors.lostconnection);
             }
 
             // Re-Enable our buttons if we're not waiting for the server anymore with it disabled.

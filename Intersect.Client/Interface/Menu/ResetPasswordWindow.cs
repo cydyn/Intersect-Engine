@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -144,7 +144,6 @@ namespace Intersect.Client.Interface.Menu
             {
                 Hide();
                 mMainMenu.Show();
-                Interface.ShowError(Strings.Errors.lostconnection);
             }
         }
 
