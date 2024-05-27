@@ -483,6 +483,7 @@ namespace Intersect.Server.Entities
                 case SpellEffect.Taunt:
                 case SpellEffect.Vampirism:
                 case SpellEffect.Antyheal:
+                case SpellEffect.Defstun:
                 case null:
                     return false;
 
@@ -512,6 +513,7 @@ namespace Intersect.Server.Entities
                 case SpellEffect.Taunt:
                 case SpellEffect.Vampirism:
                 case SpellEffect.Antyheal:
+                case SpellEffect.Defstun:
                 case null:
                     return false;
 

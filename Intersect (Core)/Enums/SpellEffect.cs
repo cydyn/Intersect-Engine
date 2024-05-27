@@ -33,5 +33,7 @@ namespace Intersect.Enums
         Vampirism = 14,
 
         Antyheal = 15,
+
+        Defstun = 16,
     }
 }

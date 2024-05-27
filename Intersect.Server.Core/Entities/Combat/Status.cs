@@ -39,6 +39,7 @@ namespace Intersect.Server.Entities.Combat
             SpellEffect.Shield,
             SpellEffect.Transform,
             SpellEffect.Vampirism,
+            SpellEffect.Defstun,
         };
 
         public static List<SpellEffect> InterruptStatusses = new List<SpellEffect>()
@@ -58,12 +59,18 @@ namespace Intersect.Server.Entities.Combat
 
             // Handle Player specific stuff, such as interrupting spellcasts
             var tenacity = 0f;
+            var deff = mEntity.CachedStatuses.Any(status => status.Type == SpellEffect.Defstun);
             if (en is Player player)
             {
                 // Get our player's Tenacity stat!
                 if (!TenacityExcluded.Contains(type))
                 {
                     tenacity = player.GetEquipmentBonusEffect(ItemEffect.Tenacity);
+                }
+
+                if (!TenacityExcluded.Contains(type) && deff)
+                {
+                    tenacity = 100f;
                 }
 
                 // Interrupt their spellcast if we are running a Silence, Sleep or Stun!
@@ -81,6 +88,10 @@ namespace Intersect.Server.Entities.Combat
                 if (!Status.TenacityExcluded.Contains(type))
                 {
                     tenacity = (float)thisNpc.Base.Tenacity;
+                }
+                if (!Status.TenacityExcluded.Contains(type) && deff)
+                {
+                    tenacity = 100f;
                 }
             }
 
