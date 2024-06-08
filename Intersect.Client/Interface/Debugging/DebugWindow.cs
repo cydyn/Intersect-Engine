@@ -243,17 +243,6 @@ namespace Intersect.Client.Interface.Debugging
             table.AddRow(Strings.Debug.InterfaceObjects).Listen(interfaceObjectsProvider, 1);
             _disposables.Add(interfaceObjectsProvider.Generator.Start());
 
-            _ = table.AddRow(Strings.Debug.ControlUnderCursor, 1);
-
-            var controlUnderCursorProvider = new ControlUnderCursorProvider();
-            table.AddRow(Strings.Internals.Type).Listen(controlUnderCursorProvider, 0);
-            table.AddRow(Strings.Internals.Name).Listen(controlUnderCursorProvider, 1);
-            table.AddRow(Strings.Internals.LocalItem.ToString(Strings.Internals.Bounds)).Listen(controlUnderCursorProvider, 2);
-            table.AddRow(Strings.Internals.GlobalItem.ToString(Strings.Internals.Bounds)).Listen(controlUnderCursorProvider, 3);
-            table.AddRow(Strings.Internals.Color).Listen(controlUnderCursorProvider, 4);
-            table.AddRow(Strings.Internals.ColorOverride).Listen(controlUnderCursorProvider, 5);
-            _disposables.Add(controlUnderCursorProvider.Generator.Start());
-
             return table;
         }
 
