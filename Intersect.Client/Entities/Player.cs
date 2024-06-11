@@ -1748,73 +1748,78 @@ namespace Intersect.Client.Entities
                 case Direction.Up:
                     y--;
                     break;
-
                 case Direction.Down:
                     y++;
                     break;
-
                 case Direction.Left:
                     x--;
                     break;
-
                 case Direction.Right:
                     x++;
                     break;
-
                 case Direction.UpLeft:
                     y--;
                     x--;
                     break;
-
                 case Direction.UpRight:
                     y--;
                     x++;
                     break;
-
                 case Direction.DownRight:
                     y++;
                     x++;
                     break;
-
                 case Direction.DownLeft:
                     y++;
                     x--;
                     break;
             }
 
+            Entity entityInFront = null;
             if (TryGetRealLocation(ref x, ref y, ref map))
             {
-                // Iterate through all entities
                 foreach (var en in Globals.Entities)
                 {
-                    // Skip if the entity is null or is not within the player's map.
-                    if (en.Value?.MapId != map)
+                    if (en.Value?.MapId != map || en.Value == Globals.Me || !en.Value.CanBeAttacked)
                     {
                         continue;
                     }
 
-                    // Skip if the entity is the current player.
-                    if (en.Value == Globals.Me)
+                    if (en.Value.X == x && en.Value.Y == y)
+                    {
+                        entityInFront = en.Value;
+                        break;
+                    }
+                }
+            }
+
+            // If there is an entity directly in front, attack it
+            if (entityInFront != null)
+            {
+                TryTarget(entityInFront);
+                PacketSender.SendAttack(entityInFront.Id);
+                AttackTimer = Timing.Global.Milliseconds + CalculateAttackTime();
+                return true;
+            }
+
+            // If no entity in front, attack the closest valid target within range
+            if (TryGetRealLocation(ref x, ref y, ref map))
+            {
+                foreach (var en in Globals.Entities)
+                {
+                    if (en.Value?.MapId != map || en.Value == Globals.Me || !en.Value.CanBeAttacked)
                     {
                         continue;
                     }
-
-                    // Skip if the entity can't be attacked.
-                    if (!en.Value.CanBeAttacked)
+                    // Check if there is a targeted entity
+                    if (Math.Abs(en.Value.X - x) <= 1 && Math.Abs(en.Value.Y - y) <= 1)
                     {
-                        continue;
+                        PacketSender.SendAttack(TargetIndex);
+                        AttackTimer = Timing.Global.Milliseconds + CalculateAttackTime();
+                        return true;
                     }
 
-                    if (en.Value.X != x || en.Value.Y != y)
-                    {
-                        continue;
-                    }
 
-                    // Attack the entity.
-                    PacketSender.SendAttack(en.Key);
-                    AttackTimer = Timing.Global.Milliseconds + CalculateAttackTime();
-
-                    return true;
                 }
             }
 
