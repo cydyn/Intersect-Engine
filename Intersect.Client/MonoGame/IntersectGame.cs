@@ -157,6 +157,38 @@ namespace Intersect.Client.MonoGame
         protected override void Initialize()
         {
             base.Initialize();
+            // Usunięcie folderu game.westerre.pl:5401 przed aktualizacją
+            string intersectFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), ".intersect");
+            string westerreFolderPath = Path.Combine(intersectFolderPath, "Westerre");
+            string gameFolderPath = Path.Combine(westerreFolderPath, "game.westerre.pl.5401");
+
+            if (Directory.Exists(gameFolderPath))
+            {
+                try
+                {
+                    // Usunięcie wszystkich plików i podfolderów w folderze game.westerre.pl:5401
+                    foreach (string filePath in Directory.EnumerateFiles(gameFolderPath))
+                    {
+                        File.Delete(filePath);
+                    }
+                    foreach (string directoryPath in Directory.EnumerateDirectories(gameFolderPath))
+                    {
+                        Directory.Delete(directoryPath, true);
+                    }
+
+                    Console.WriteLine($"Deleted contents of {gameFolderPath} before update.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to delete contents of {gameFolderPath}: {ex.Message}");
+                    // Obsłużenie błędu, jeśli nie można usunąć zawartości folderu
+                    // Możesz zdecydować, czy chcesz przerwać aktualizację lub kontynuować
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Folder {gameFolderPath} does not exist.");
+            }
 
             {
                 string applicationId = "1229737105186492456"; // Zastąp własnym Application ID z portalu Dewelopera Discord
