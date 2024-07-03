@@ -1802,24 +1802,27 @@ namespace Intersect.Client.Entities
             }
 
             // If no entity in front, attack the closest valid target within range
-            if (TryGetRealLocation(ref x, ref y, ref map))
+            Entity closestEntity = null;
+            int closestDistance = int.MaxValue;
+            foreach (var en in Globals.Entities)
             {
-                foreach (var en in Globals.Entities)
+                if (en.Value == null || en.Value == Globals.Me || !en.Value.CanBeAttacked)
                 {
-                    if (en.Value?.MapId != map || en.Value == Globals.Me || !en.Value.CanBeAttacked)
-                    {
-                        continue;
-                    }
-                    // Check if there is a targeted entity
-                    if (Math.Abs(en.Value.X - x) <= 1 && Math.Abs(en.Value.Y - y) <= 1)
-                    {
-                        PacketSender.SendAttack(TargetIndex);
-                        AttackTimer = Timing.Global.Milliseconds + CalculateAttackTime();
-                        return true;
-                    }
-
-
+                    continue;
                 }
+
+                int distance = GetDistanceTo(en.Value);
+                if (distance < closestDistance && distance <= 1) // Adjust the range as necessary
+                {
+                    closestEntity = en.Value;
+                    closestDistance = distance;
+                }
+            }
+            if (closestEntity != null)
+            {
+                PacketSender.SendAttack(TargetIndex);
+                AttackTimer = Timing.Global.Milliseconds + CalculateAttackTime();
+                return true;
             }
 
             foreach (MapInstance eventMap in Maps.MapInstance.Lookup.Values)
@@ -1838,7 +1841,6 @@ namespace Intersect.Client.Entities
                             //Talk to Event
                             PacketSender.SendActivateEvent(en.Key);
                             AttackTimer = Timing.Global.Milliseconds + CalculateAttackTime();
-
                             return true;
                         }
                     }
@@ -1848,9 +1850,9 @@ namespace Intersect.Client.Entities
             //Projectile/empty swing for animations
             PacketSender.SendAttack(Guid.Empty);
             AttackTimer = Timing.Global.Milliseconds + CalculateAttackTime();
-
             return true;
         }
+
 
         public bool TryGetRealLocation(ref int x, ref int y, ref Guid mapId)
         {
