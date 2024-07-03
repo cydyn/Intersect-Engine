@@ -6,7 +6,6 @@ using Intersect.Client.Framework.Input;
 using Intersect.Client.General;
 using Intersect.Client.Interface.Game;
 using Intersect.Client.Localization;
-using Intersect.Client.MonoGame.Database;
 using Intersect.Client.MonoGame.File_Management;
 using Intersect.Client.MonoGame.Graphics;
 using Intersect.Client.MonoGame.Input;
@@ -17,11 +16,7 @@ using DiscordRPC;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
-using System;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using Intersect.Client.Framework.Database;
 using Intersect.Client.Framework.Graphics;
