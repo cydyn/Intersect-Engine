@@ -74,7 +74,8 @@ namespace Intersect.Client.Interface.Game.DescriptionWindows.Components
         /// </summary>
         /// <param name="x">The X position to move the control to.</param>
         /// <param name="y">The Y position to move the control to.</param>
-        public virtual void SetPosition(int x, int y) => mContainer.SetPosition(x, y);
+        /// <param name="itemDecriptionContainer">The container for the item description.</param>
+        public virtual void SetPosition(int x, int y, ImagePanel? itemDecriptionContainer = null) => mContainer.SetPosition(x, y);
 
         /// <summary>
         /// Resizes the control to fit its children.

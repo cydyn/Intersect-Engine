@@ -131,7 +131,7 @@ namespace Intersect.Client.Interface.Game.DescriptionWindows
         }
 
         /// <inheritdoc/>
-        public override void SetPosition(int x, int y)
+        public override void SetPosition(int x, int y, ImagePanel? itemDecriptionContainer = null)
         {
             if (mContainer == null || mContainer.Canvas == null)
             {
@@ -145,7 +145,7 @@ namespace Intersect.Client.Interface.Game.DescriptionWindows
             HoveredControlX = InputHandler.HoveredControl.LocalPosToCanvas(new Point(0, 0)).X;
             HoveredControlY = InputHandler.HoveredControl.LocalPosToCanvas(new Point(0, 0)).Y;
             newX = HoveredControlX + InputHandler.HoveredControl.Width;
-            newY = HoveredControlY + InputHandler.HoveredControl.Height;
+            newY = itemDecriptionContainer != null ? itemDecriptionContainer.Bottom : HoveredControlY + InputHandler.HoveredControl.Height;
             // Do not allow it to render outside of the screen canvas.
             if (newX > mContainer.Canvas.Width - mContainer.Width)
             {
@@ -154,7 +154,7 @@ namespace Intersect.Client.Interface.Game.DescriptionWindows
 
             if (newY > mContainer.Canvas.Height - mContainer.Height)
             {
-                newY = HoveredControlY - mContainer.Height;
+                newY = itemDecriptionContainer != null ? itemDecriptionContainer.Y - mContainer.Height : HoveredControlY - mContainer.Height;
             }
 
             mContainer.MoveTo(newX, newY);
