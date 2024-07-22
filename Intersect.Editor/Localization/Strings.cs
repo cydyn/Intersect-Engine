@@ -997,6 +997,12 @@ namespace Intersect.Editor.Localization
 
             public static LocalizedString abilitypowerboost = @"Ability Pwr (+{00}):";
 
+            public static LocalizedString armorpenpowerboost = @"Armor Pen (+{00}):";
+
+            public static LocalizedString vitalitypowerboost = @"Vitality (+{00}):";
+
+            public static LocalizedString wisdompowerboost = @"Wisdom (+{00}):";
+
             public static LocalizedString addsprite = @"Add Sprite";
 
             public static LocalizedString addspell = @"Add Spell";
@@ -1022,6 +1028,12 @@ namespace Intersect.Editor.Localization
             public static LocalizedString attackspeedvalue = @"Value:";
 
             public static LocalizedString baseabilitypower = @"Ability Pwr:";
+
+            public static LocalizedString basearmorpen = @"Armor Pen:";
+
+            public static LocalizedString basevitality = @"Vitality:";
+
+            public static LocalizedString basewisdom = @"Wisdom:";
 
             public static LocalizedString basearmor = @"Armor:";
 
@@ -1233,6 +1245,9 @@ Tick timer saved in server config.json.";
                 {2, @"Defense"},
                 {3, @"Magic Resist"},
                 {4, @"Speed"},
+                {5, @"Armor Penetration"},
+                {6, @"Vitality"},
+                {7, @"Wisdom"},
             };
 
             public static Dictionary<int, LocalizedString> vitals = new Dictionary<int, LocalizedString>
@@ -3620,6 +3635,12 @@ Tick timer saved in server config.json.";
 
             public static LocalizedString abilitypowerbonus = @"Ability Pwr:";
 
+            public static LocalizedString armorpenetrationbonus = @"Armor Pen:";
+
+            public static LocalizedString vitalitybonus = @"Vitality:";
+
+            public static LocalizedString wisdombonus = @"Wisdom:";
+
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public static LocalizedString AddBonusEffect = @"Add";
 
@@ -4402,6 +4423,12 @@ Tick timer saved in server config.json.";
 
             public static LocalizedString abilitypower = @"Ability Pwr:";
 
+            public static LocalizedString armorpen = @"Armor Pen:";
+
+            public static LocalizedString vitality = @"Vitality:";
+
+            public static LocalizedString wisdom = @"Wisdom:";
+
             public static LocalizedString addhostility = @"Add";
 
             public static LocalizedString addspell = @"Add";
@@ -5148,6 +5175,12 @@ Tick timer saved in server config.json.";
         {
 
             public static LocalizedString abilitypower = @"Ability Pwr:";
+
+            public static LocalizedString armorpen = @"Armor Pen:";
+
+            public static LocalizedString vitality = @"Vitality:";
+
+            public static LocalizedString wisdom = @"Wisdom:";
 
             public static LocalizedString attack = @"Attack:";
 

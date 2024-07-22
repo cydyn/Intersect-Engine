@@ -160,12 +160,14 @@ namespace Intersect.Editor.Forms.Editors
             nudDef.Maximum = Options.MaxStatValue;
             nudMR.Maximum = Options.MaxStatValue;
             nudSpd.Maximum = Options.MaxStatValue;
+            nudARP.Maximum = Options.MaxStatValue;
 
             nudStr.Minimum = -Options.MaxStatValue;
             nudMag.Minimum = -Options.MaxStatValue;
             nudDef.Minimum = -Options.MaxStatValue;
             nudMR.Minimum = -Options.MaxStatValue;
             nudSpd.Minimum = -Options.MaxStatValue;
+            nudARP.Minimum = -Options.MaxStatValue;
 
             InitLocalization();
             UpdateEditor();
@@ -232,6 +234,7 @@ namespace Intersect.Editor.Forms.Editors
             lblSpd.Text = Strings.ItemEditor.speedbonus;
             lblMag.Text = Strings.ItemEditor.abilitypowerbonus;
             lblMR.Text = Strings.ItemEditor.magicresistbonus;
+            lblARP.Text = Strings.ItemEditor.armorpenetrationbonus;
             lblEffectPercent.Text = Strings.ItemEditor.bonusamount;
             lblEquipmentAnimation.Text = Strings.ItemEditor.equipmentanimation;
 
@@ -351,12 +354,14 @@ namespace Intersect.Editor.Forms.Editors
                 nudDef.Value = mEditorItem.StatsGiven[2];
                 nudMR.Value = mEditorItem.StatsGiven[3];
                 nudSpd.Value = mEditorItem.StatsGiven[4];
+                nudARP.Value = mEditorItem.StatsGiven[5];
 
                 nudStrPercentage.Value = mEditorItem.PercentageStatsGiven[0];
                 nudMagPercentage.Value = mEditorItem.PercentageStatsGiven[1];
                 nudDefPercentage.Value = mEditorItem.PercentageStatsGiven[2];
                 nudMRPercentage.Value = mEditorItem.PercentageStatsGiven[3];
                 nudSpdPercentage.Value = mEditorItem.PercentageStatsGiven[4];
+                nudARPPercentage.Value = mEditorItem.PercentageStatsGiven[4];
 
                 nudHealthBonus.Value = mEditorItem.VitalsGiven[0];
                 nudManaBonus.Value = mEditorItem.VitalsGiven[1];
@@ -862,6 +867,11 @@ namespace Intersect.Editor.Forms.Editors
             mEditorItem.StatsGiven[4] = (int)nudSpd.Value;
         }
 
+        private void nudARP_ValueChanged(object sender, EventArgs e)
+        {
+            mEditorItem.StatsGiven[5] = (int)nudARP.Value;
+        }
+
         private void nudStrPercentage_ValueChanged(object sender, EventArgs e)
         {
             mEditorItem.PercentageStatsGiven[0] = (int)nudStrPercentage.Value;
@@ -885,6 +895,11 @@ namespace Intersect.Editor.Forms.Editors
         private void nudSpdPercentage_ValueChanged(object sender, EventArgs e)
         {
             mEditorItem.PercentageStatsGiven[4] = (int)nudSpdPercentage.Value;
+        }
+
+        private void nudARPPercentage_ValueChanged(object sender, EventArgs e)
+        {
+            mEditorItem.PercentageStatsGiven[5] = (int)nudARPPercentage.Value;
         }
 
         private void nudBag_ValueChanged(object sender, EventArgs e)

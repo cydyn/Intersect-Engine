@@ -189,6 +189,12 @@ namespace Intersect.Editor.General
                     return "Magic Resist";
                 case (int) Stat.Speed:
                     return "Speed";
+                case (int)Stat.ArmorPenetration:
+                    return "Armor Penetration";
+                case (int)Stat.Vitality:
+                    return "Vitality";
+                case (int)Stat.Wisdom:
+                    return "Wisdom";
                 default:
                     return "Invalid Stat";
             }

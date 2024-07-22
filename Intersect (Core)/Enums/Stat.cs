@@ -11,5 +11,11 @@ namespace Intersect.Enums
         MagicResist,
 
         Speed,
+
+        ArmorPenetration,
+
+        Vitality,
+
+        Wisdom
     }
 }

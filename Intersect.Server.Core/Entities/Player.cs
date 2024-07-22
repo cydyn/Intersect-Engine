@@ -1132,6 +1132,17 @@ namespace Intersect.Server.Entities
                 }
             }
 
+            // Add ArmorPenetration only to Health (vital == (int)Vital.Health)
+            if (vital == (int)Vital.Health)
+            {
+                classVital += Stat[(int)Enums.Stat.ArmorPenetration].Value();
+            }
+
+            if (vital == (int)Vital.Mana)
+            {
+                classVital += Stat[(int)Enums.Stat.ArmorPenetration].Value();
+            }
+
             var baseVital = classVital;
 
             // Loop through equipment and see if any items grant vital buffs
@@ -5914,13 +5925,21 @@ namespace Intersect.Server.Entities
         //Stats
         public void UpgradeStat(int statIndex)
         {
-            if (Stat[statIndex].BaseStat + StatPointAllocations[statIndex] < Options.MaxStatValue && StatPoints > 0)
+            if (statIndex == 5)
             {
-                StatPointAllocations[statIndex]++;
-                StatPoints--;
-                PacketSender.SendEntityStats(this);
-                PacketSender.SendPointsTo(this);
-                UnequipInvalidItems();
+                PacketSender.SendChatMsg(this, "Nie mozesz ulepszyc statystyki armorpenetration.", ChatMessageType.Error);
+            }
+            else
+            {
+                // Ulepszanie statystyki
+                if (Stat[statIndex].BaseStat + StatPointAllocations[statIndex] < Options.MaxStatValue && StatPoints > 0)
+                {
+                    StatPointAllocations[statIndex]++;
+                    StatPoints--;
+                    PacketSender.SendEntityStats(this);
+                    PacketSender.SendPointsTo(this);
+                    UnequipInvalidItems();
+                }
             }
         }
 
