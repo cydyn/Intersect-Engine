@@ -1135,12 +1135,12 @@ namespace Intersect.Server.Entities
             // Add ArmorPenetration only to Health (vital == (int)Vital.Health)
             if (vital == (int)Vital.Health)
             {
-                classVital += Stat[(int)Enums.Stat.ArmorPenetration].Value();
+                classVital += Stat[(int)Enums.Stat.Vitality].Value();
             }
 
             if (vital == (int)Vital.Mana)
             {
-                classVital += Stat[(int)Enums.Stat.ArmorPenetration].Value();
+                classVital += Stat[(int)Enums.Stat.Wisdom].Value();
             }
 
             var baseVital = classVital;
