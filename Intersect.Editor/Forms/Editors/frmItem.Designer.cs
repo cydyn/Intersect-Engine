@@ -164,6 +164,8 @@ namespace Intersect.Editor.Forms.Editors
             nudSpdPercentage = new DarkNumericUpDown();
             nudMRPercentage = new DarkNumericUpDown();
             nudARPPercentage = new DarkNumericUpDown();
+            nudVitPercentage = new DarkNumericUpDown();
+            nudWisPercentage = new DarkNumericUpDown();
             nudDefPercentage = new DarkNumericUpDown();
             nudMagPercentage = new DarkNumericUpDown();
             nudStrPercentage = new DarkNumericUpDown();
@@ -178,12 +180,16 @@ namespace Intersect.Editor.Forms.Editors
             nudMag = new DarkNumericUpDown();
             nudStr = new DarkNumericUpDown();
             nudARP = new DarkNumericUpDown();
+            nudVit = new DarkNumericUpDown();
+            nudWis = new DarkNumericUpDown();
             lblSpd = new Label();
             lblMR = new Label();
             lblDef = new Label();
             lblMag = new Label();
             lblStr = new Label();
             lblARP = new Label();
+            lblVit = new Label();
+            lblWis = new Label();
             cmbEquipmentSlot = new DarkComboBox();
             lblEquipmentSlot = new Label();
             grpWeaponProperties = new DarkGroupBox();
@@ -281,8 +287,12 @@ namespace Intersect.Editor.Forms.Editors
             ((ISupportInitialize)nudMagPercentage).BeginInit();
             ((ISupportInitialize)nudStrPercentage).BeginInit();
             ((ISupportInitialize)nudARPPercentage).BeginInit();
+            ((ISupportInitialize)nudVitPercentage).BeginInit();
+            ((ISupportInitialize)nudWisPercentage).BeginInit();
             ((ISupportInitialize)nudSpd).BeginInit();
             ((ISupportInitialize)nudARP).BeginInit();
+            ((ISupportInitialize)nudVit).BeginInit();
+            ((ISupportInitialize)nudWis).BeginInit();
             ((ISupportInitialize)nudMR).BeginInit();
             ((ISupportInitialize)nudDef).BeginInit();
             ((ISupportInitialize)nudMag).BeginInit();
@@ -2002,6 +2012,8 @@ namespace Intersect.Editor.Forms.Editors
             grpStatBonuses.Controls.Add(lblPercentage6);
             grpStatBonuses.Controls.Add(nudSpdPercentage);
             grpStatBonuses.Controls.Add(nudARPPercentage);
+            grpStatBonuses.Controls.Add(nudVitPercentage);
+            grpStatBonuses.Controls.Add(nudWisPercentage);
             grpStatBonuses.Controls.Add(nudMRPercentage);
             grpStatBonuses.Controls.Add(nudDefPercentage);
             grpStatBonuses.Controls.Add(nudMagPercentage);
@@ -2013,6 +2025,8 @@ namespace Intersect.Editor.Forms.Editors
             grpStatBonuses.Controls.Add(lblPlus6);
             grpStatBonuses.Controls.Add(nudSpd);
             grpStatBonuses.Controls.Add(nudARP);
+            grpStatBonuses.Controls.Add(nudVit);
+            grpStatBonuses.Controls.Add(nudWis);
             grpStatBonuses.Controls.Add(nudMR);
             grpStatBonuses.Controls.Add(nudDef);
             grpStatBonuses.Controls.Add(nudMag);
@@ -2020,6 +2034,8 @@ namespace Intersect.Editor.Forms.Editors
             grpStatBonuses.Controls.Add(lblSpd);
             grpStatBonuses.Controls.Add(lblMR);
             grpStatBonuses.Controls.Add(lblARP);
+            grpStatBonuses.Controls.Add(lblVit);
+            grpStatBonuses.Controls.Add(lblWis);
             grpStatBonuses.Controls.Add(lblDef);
             grpStatBonuses.Controls.Add(lblMag);
             grpStatBonuses.Controls.Add(lblStr);
@@ -2124,6 +2140,34 @@ namespace Intersect.Editor.Forms.Editors
             nudARPPercentage.TabIndex = 84;
             nudARPPercentage.Value = new decimal(new int[] { 0, 0, 0, 0 });
             nudARPPercentage.ValueChanged += nudARPPercentage_ValueChanged;
+            // 
+            // nudVitPercentage
+            // 
+            nudVitPercentage.BackColor = System.Drawing.Color.FromArgb(69, 73, 74);
+            nudVitPercentage.ForeColor = System.Drawing.Color.Gainsboro;
+            nudVitPercentage.Location = new System.Drawing.Point(189, 182);
+            nudVitPercentage.Margin = new Padding(4, 3, 4, 3);
+            nudVitPercentage.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudVitPercentage.Minimum = new decimal(new int[] { -100, 0, 0, int.MinValue });
+            nudVitPercentage.Name = "nudVitPercentage";
+            nudVitPercentage.Size = new Size(76, 23);
+            nudVitPercentage.TabIndex = 86;
+            nudVitPercentage.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            nudVitPercentage.ValueChanged += nudVitPercentage_ValueChanged;
+            // 
+            // nudWisPercentage
+            // 
+            nudWisPercentage.BackColor = System.Drawing.Color.FromArgb(69, 73, 74);
+            nudWisPercentage.ForeColor = System.Drawing.Color.Gainsboro;
+            nudWisPercentage.Location = new System.Drawing.Point(189, 182);
+            nudWisPercentage.Margin = new Padding(4, 3, 4, 3);
+            nudWisPercentage.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudWisPercentage.Minimum = new decimal(new int[] { -100, 0, 0, int.MinValue });
+            nudWisPercentage.Name = "nudWisPercentage";
+            nudWisPercentage.Size = new Size(76, 23);
+            nudWisPercentage.TabIndex = 87;
+            nudWisPercentage.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            nudWisPercentage.ValueChanged += nudWisPercentage_ValueChanged;
             // 
             // nudDefPercentage
             // 
@@ -2256,6 +2300,32 @@ namespace Intersect.Editor.Forms.Editors
             nudARP.Value = new decimal(new int[] { 0, 0, 0, 0 });
             nudARP.ValueChanged += nudARP_ValueChanged;
             // 
+            // nudVit
+            // 
+            nudVit.BackColor = System.Drawing.Color.FromArgb(69, 73, 74);
+            nudVit.ForeColor = System.Drawing.Color.Gainsboro;
+            nudVit.Location = new System.Drawing.Point(19, 182);
+            nudVit.Margin = new Padding(4, 3, 4, 3);
+            nudVit.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            nudVit.Name = "nudVit";
+            nudVit.Size = new Size(140, 23);
+            nudVit.TabIndex = 88;
+            nudVit.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            nudVit.ValueChanged += nudVit_ValueChanged;
+            // 
+            // nudWis
+            // 
+            nudWis.BackColor = System.Drawing.Color.FromArgb(69, 73, 74);
+            nudWis.ForeColor = System.Drawing.Color.Gainsboro;
+            nudWis.Location = new System.Drawing.Point(19, 182);
+            nudWis.Margin = new Padding(4, 3, 4, 3);
+            nudWis.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            nudWis.Name = "nudWis";
+            nudWis.Size = new Size(140, 23);
+            nudWis.TabIndex = 89;
+            nudWis.Value = new decimal(new int[] { 0, 0, 0, 0 });
+            nudWis.ValueChanged += nudWis_ValueChanged;
+            // 
             // nudDef
             // 
             nudDef.BackColor = System.Drawing.Color.FromArgb(69, 73, 74);
@@ -2322,8 +2392,28 @@ namespace Intersect.Editor.Forms.Editors
             lblARP.Margin = new Padding(2, 0, 2, 0);
             lblARP.Name = "lblARP";
             lblARP.Size = new Size(76, 15);
-            lblARP.TabIndex = 46;
+            lblARP.TabIndex = 90;
             lblARP.Text = "Armor Penetration:";
+            // 
+            // lblVit
+            // 
+            lblVit.AutoSize = true;
+            lblVit.Location = new System.Drawing.Point(12, 133);
+            lblVit.Margin = new Padding(2, 0, 2, 0);
+            lblVit.Name = "lblVit";
+            lblVit.Size = new Size(76, 15);
+            lblVit.TabIndex = 91;
+            lblVit.Text = "Vitality:";
+            // 
+            // lblWis
+            // 
+            lblWis.AutoSize = true;
+            lblWis.Location = new System.Drawing.Point(12, 133);
+            lblWis.Margin = new Padding(2, 0, 2, 0);
+            lblWis.Name = "lblWis";
+            lblWis.Size = new Size(76, 15);
+            lblWis.TabIndex = 92;
+            lblWis.Text = "Wisdom:";
             // 
             // lblDef
             // 
@@ -3091,12 +3181,16 @@ namespace Intersect.Editor.Forms.Editors
             ((ISupportInitialize)nudMagPercentage).EndInit();
             ((ISupportInitialize)nudStrPercentage).EndInit();
             ((ISupportInitialize)nudARPPercentage).EndInit();
+            ((ISupportInitialize)nudVitPercentage).EndInit();
+            ((ISupportInitialize)nudWisPercentage).EndInit();
             ((ISupportInitialize)nudSpd).EndInit();
             ((ISupportInitialize)nudMR).EndInit();
             ((ISupportInitialize)nudDef).EndInit();
             ((ISupportInitialize)nudMag).EndInit();
             ((ISupportInitialize)nudStr).EndInit();
             ((ISupportInitialize)nudARP).EndInit();
+            ((ISupportInitialize)nudVit).EndInit();
+            ((ISupportInitialize)nudWis).EndInit();
             grpWeaponProperties.ResumeLayout(false);
             grpWeaponProperties.PerformLayout();
             ((ISupportInitialize)nudCritMultiplier).EndInit();
@@ -3193,12 +3287,16 @@ namespace Intersect.Editor.Forms.Editors
         private DarkNumericUpDown nudMag;
         private DarkNumericUpDown nudStr;
         private DarkNumericUpDown nudARP;
+        private DarkNumericUpDown nudVit;
+        private DarkNumericUpDown nudWis;
         private Label lblSpd;
         private Label lblMR;
         private Label lblDef;
         private Label lblMag;
         private Label lblStr;
         private Label lblARP;
+        private Label lblVit;
+        private Label lblWis;
         private DarkNumericUpDown nudScaling;
         private DarkNumericUpDown nudCritChance;
         private DarkNumericUpDown nudDamage;
@@ -3252,6 +3350,8 @@ namespace Intersect.Editor.Forms.Editors
         private DarkNumericUpDown nudMagPercentage;
         private DarkNumericUpDown nudStrPercentage;
         private DarkNumericUpDown nudARPPercentage;
+        private DarkNumericUpDown nudVitPercentage;
+        private DarkNumericUpDown nudWisPercentage;
         private Label lblPlus5;
         private Label lblPlus4;
         private Label lblPlus8;

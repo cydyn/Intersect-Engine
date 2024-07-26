@@ -48,6 +48,9 @@ namespace Intersect.Editor.Forms.Editors
             this.nudDef = new DarkUI.Controls.DarkNumericUpDown();
             this.nudMag = new DarkUI.Controls.DarkNumericUpDown();
             this.nudAttack = new DarkUI.Controls.DarkNumericUpDown();
+            this.nudARP = new DarkUI.Controls.DarkNumericUpDown();
+            this.nudVit = new DarkUI.Controls.DarkNumericUpDown();
+            this.nudWis = new DarkUI.Controls.DarkNumericUpDown();
             this.lblPoints = new System.Windows.Forms.Label();
             this.lblMana = new System.Windows.Forms.Label();
             this.lblHP = new System.Windows.Forms.Label();
@@ -56,6 +59,9 @@ namespace Intersect.Editor.Forms.Editors
             this.lblDef = new System.Windows.Forms.Label();
             this.lblMag = new System.Windows.Forms.Label();
             this.lblAttack = new System.Windows.Forms.Label();
+            this.lblARP = new System.Windows.Forms.Label();
+            this.lblVit = new System.Windows.Forms.Label();
+            this.lblWis = new System.Windows.Forms.Label();
             this.grpGeneral = new DarkUI.Controls.DarkGroupBox();
             this.btnAddFolder = new DarkUI.Controls.DarkButton();
             this.lblFolder = new System.Windows.Forms.Label();
@@ -151,6 +157,9 @@ namespace Intersect.Editor.Forms.Editors
             this.nudMagicIncrease = new DarkUI.Controls.DarkNumericUpDown();
             this.nudArmorIncrease = new DarkUI.Controls.DarkNumericUpDown();
             this.nudStrengthIncrease = new DarkUI.Controls.DarkNumericUpDown();
+            this.nudArmorPenIncrease = new DarkUI.Controls.DarkNumericUpDown();
+            this.nudVitalityIncrease = new DarkUI.Controls.DarkNumericUpDown();
+            this.nudWisdomIncrease = new DarkUI.Controls.DarkNumericUpDown();
             this.rdoPercentageIncrease = new DarkUI.Controls.DarkRadioButton();
             this.rdoStaticIncrease = new DarkUI.Controls.DarkRadioButton();
             this.lblPointsIncrease = new System.Windows.Forms.Label();
@@ -161,6 +170,9 @@ namespace Intersect.Editor.Forms.Editors
             this.lblMagicResistIncrease = new System.Windows.Forms.Label();
             this.lblArmorIncrease = new System.Windows.Forms.Label();
             this.lblMagicIncrease = new System.Windows.Forms.Label();
+            this.lblArmorPenIncrease = new System.Windows.Forms.Label();
+            this.lblVitalityIncrease = new System.Windows.Forms.Label();
+            this.lblWisdomIncrease = new System.Windows.Forms.Label();
             this.btnCancel = new DarkUI.Controls.DarkButton();
             this.btnSave = new DarkUI.Controls.DarkButton();
             this.toolStrip = new DarkUI.Controls.DarkToolStrip();
@@ -186,6 +198,9 @@ namespace Intersect.Editor.Forms.Editors
             ((System.ComponentModel.ISupportInitialize)(this.nudDef)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAttack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudARP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWis)).BeginInit();
             this.grpGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSprite)).BeginInit();
             this.grpSpells.SuspendLayout();
@@ -224,6 +239,9 @@ namespace Intersect.Editor.Forms.Editors
             ((System.ComponentModel.ISupportInitialize)(this.nudMagicIncrease)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudArmorIncrease)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStrengthIncrease)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArmorPenIncrease)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVitalityIncrease)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWisdomIncrease)).BeginInit();
             this.toolStrip.SuspendLayout();
             this.mnuExpGrid.SuspendLayout();
             this.SuspendLayout();
@@ -297,6 +315,9 @@ namespace Intersect.Editor.Forms.Editors
             this.grpBaseStats.Controls.Add(this.nudDef);
             this.grpBaseStats.Controls.Add(this.nudMag);
             this.grpBaseStats.Controls.Add(this.nudAttack);
+            this.grpBaseStats.Controls.Add(this.nudARP);
+            this.grpBaseStats.Controls.Add(this.nudVit);
+            this.grpBaseStats.Controls.Add(this.nudWis);
             this.grpBaseStats.Controls.Add(this.lblPoints);
             this.grpBaseStats.Controls.Add(this.lblMana);
             this.grpBaseStats.Controls.Add(this.lblHP);
@@ -305,6 +326,9 @@ namespace Intersect.Editor.Forms.Editors
             this.grpBaseStats.Controls.Add(this.lblDef);
             this.grpBaseStats.Controls.Add(this.lblMag);
             this.grpBaseStats.Controls.Add(this.lblAttack);
+            this.grpBaseStats.Controls.Add(this.lblARP);
+            this.grpBaseStats.Controls.Add(this.lblVit);
+            this.grpBaseStats.Controls.Add(this.lblWis);
             this.grpBaseStats.ForeColor = System.Drawing.Color.Gainsboro;
             this.grpBaseStats.Location = new System.Drawing.Point(8, 372);
             this.grpBaseStats.Margin = new System.Windows.Forms.Padding(2);
@@ -480,6 +504,66 @@ namespace Intersect.Editor.Forms.Editors
             0});
             this.nudAttack.ValueChanged += new System.EventHandler(this.nudStr_ValueChanged);
             // 
+            // nudARP
+            // 
+            this.nudARP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.nudARP.ForeColor = System.Drawing.Color.Gainsboro;
+            this.nudARP.Location = new System.Drawing.Point(108, 50);
+            this.nudARP.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudARP.Name = "nudARP";
+            this.nudARP.Size = new System.Drawing.Size(100, 20);
+            this.nudARP.TabIndex = 69;
+            this.nudARP.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudARP.ValueChanged += new System.EventHandler(this.nudARP_ValueChanged);
+            // 
+            // nudVit
+            // 
+            this.nudVit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.nudVit.ForeColor = System.Drawing.Color.Gainsboro;
+            this.nudVit.Location = new System.Drawing.Point(111, 53);
+            this.nudVit.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudVit.Name = "nudVit";
+            this.nudVit.Size = new System.Drawing.Size(100, 20);
+            this.nudVit.TabIndex = 70;
+            this.nudVit.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudVit.ValueChanged += new System.EventHandler(this.nudVit_ValueChanged);
+            // 
+            // nudWis
+            // 
+            this.nudWis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.nudWis.ForeColor = System.Drawing.Color.Gainsboro;
+            this.nudWis.Location = new System.Drawing.Point(115, 60);
+            this.nudWis.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudWis.Name = "nudWis";
+            this.nudWis.Size = new System.Drawing.Size(100, 20);
+            this.nudWis.TabIndex = 71;
+            this.nudWis.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudWis.ValueChanged += new System.EventHandler(this.nudWis_ValueChanged);
+            // 
             // lblPoints
             // 
             this.lblPoints.AutoSize = true;
@@ -559,6 +643,36 @@ namespace Intersect.Editor.Forms.Editors
             this.lblAttack.Size = new System.Drawing.Size(41, 13);
             this.lblAttack.TabIndex = 5;
             this.lblAttack.Text = "Attack:";
+            // 
+            // lblARP
+            // 
+            this.lblARP.AutoSize = true;
+            this.lblARP.Location = new System.Drawing.Point(17, 50);
+            this.lblARP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblARP.Name = "lblARP";
+            this.lblARP.Size = new System.Drawing.Size(41, 13);
+            this.lblARP.TabIndex = 72;
+            this.lblARP.Text = "Armor Penetration:";
+            // 
+            // lblVit
+            // 
+            this.lblVit.AutoSize = true;
+            this.lblVit.Location = new System.Drawing.Point(17, 55);
+            this.lblVit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVit.Name = "lblVit";
+            this.lblVit.Size = new System.Drawing.Size(41, 13);
+            this.lblVit.TabIndex = 73;
+            this.lblVit.Text = "Vitality:";
+            // 
+            // lblWis
+            // 
+            this.lblWis.AutoSize = true;
+            this.lblWis.Location = new System.Drawing.Point(17, 60);
+            this.lblWis.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblWis.Name = "lblWis";
+            this.lblWis.Size = new System.Drawing.Size(41, 13);
+            this.lblWis.TabIndex = 74;
+            this.lblWis.Text = "Wisdom:";
             // 
             // grpGeneral
             // 
@@ -1834,6 +1948,9 @@ namespace Intersect.Editor.Forms.Editors
             this.grpLevelBoosts.Controls.Add(this.nudMagicIncrease);
             this.grpLevelBoosts.Controls.Add(this.nudArmorIncrease);
             this.grpLevelBoosts.Controls.Add(this.nudStrengthIncrease);
+            this.grpLevelBoosts.Controls.Add(this.nudArmorPenIncrease);
+            this.grpLevelBoosts.Controls.Add(this.nudVitalityIncrease);
+            this.grpLevelBoosts.Controls.Add(this.nudWisdomIncrease);
             this.grpLevelBoosts.Controls.Add(this.rdoPercentageIncrease);
             this.grpLevelBoosts.Controls.Add(this.rdoStaticIncrease);
             this.grpLevelBoosts.Controls.Add(this.lblPointsIncrease);
@@ -1843,6 +1960,9 @@ namespace Intersect.Editor.Forms.Editors
             this.grpLevelBoosts.Controls.Add(this.lblStrengthIncrease);
             this.grpLevelBoosts.Controls.Add(this.lblMagicResistIncrease);
             this.grpLevelBoosts.Controls.Add(this.lblArmorIncrease);
+            this.grpLevelBoosts.Controls.Add(this.lblArmorPenIncrease);
+            this.grpLevelBoosts.Controls.Add(this.lblVitalityIncrease);
+            this.grpLevelBoosts.Controls.Add(this.lblWisdomIncrease);
             this.grpLevelBoosts.Controls.Add(this.lblMagicIncrease);
             this.grpLevelBoosts.ForeColor = System.Drawing.Color.Gainsboro;
             this.grpLevelBoosts.Location = new System.Drawing.Point(9, 58);
@@ -2012,6 +2132,66 @@ namespace Intersect.Editor.Forms.Editors
             0});
             this.nudStrengthIncrease.ValueChanged += new System.EventHandler(this.nudStrengthIncrease_ValueChanged);
             // 
+            // nudArmorPenIncrease
+            // 
+            this.nudArmorPenIncrease.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.nudArmorPenIncrease.ForeColor = System.Drawing.Color.Gainsboro;
+            this.nudArmorPenIncrease.Location = new System.Drawing.Point(16, 97);
+            this.nudArmorPenIncrease.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudArmorPenIncrease.Name = "nudArmorPenIncrease";
+            this.nudArmorPenIncrease.Size = new System.Drawing.Size(85, 20);
+            this.nudArmorPenIncrease.TabIndex = 75;
+            this.nudArmorPenIncrease.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudArmorPenIncrease.ValueChanged += new System.EventHandler(this.nudArmorPenIncrease_ValueChanged);
+            // 
+            // nudVitalityIncrease
+            // 
+            this.nudVitalityIncrease.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.nudVitalityIncrease.ForeColor = System.Drawing.Color.Gainsboro;
+            this.nudVitalityIncrease.Location = new System.Drawing.Point(21, 97);
+            this.nudVitalityIncrease.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudVitalityIncrease.Name = "nudVitalityIncrease";
+            this.nudVitalityIncrease.Size = new System.Drawing.Size(85, 20);
+            this.nudVitalityIncrease.TabIndex = 76;
+            this.nudVitalityIncrease.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudVitalityIncrease.ValueChanged += new System.EventHandler(this.nudVitalityIncrease_ValueChanged);
+            // 
+            // nudWisdomIncrease
+            // 
+            this.nudWisdomIncrease.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(73)))), ((int)(((byte)(74)))));
+            this.nudWisdomIncrease.ForeColor = System.Drawing.Color.Gainsboro;
+            this.nudWisdomIncrease.Location = new System.Drawing.Point(28, 97);
+            this.nudWisdomIncrease.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudWisdomIncrease.Name = "nudWisdomIncrease";
+            this.nudWisdomIncrease.Size = new System.Drawing.Size(85, 20);
+            this.nudWisdomIncrease.TabIndex = 77;
+            this.nudWisdomIncrease.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.nudWisdomIncrease.ValueChanged += new System.EventHandler(this.nudWisdomIncrease_ValueChanged);
+            // 
             // rdoPercentageIncrease
             // 
             this.rdoPercentageIncrease.AutoSize = true;
@@ -2113,6 +2293,36 @@ namespace Intersect.Editor.Forms.Editors
             this.lblMagicIncrease.Size = new System.Drawing.Size(39, 13);
             this.lblMagicIncrease.TabIndex = 6;
             this.lblMagicIncrease.Text = "Magic:";
+            // 
+            // lblArmorPenIncrease
+            // 
+            this.lblArmorPenIncrease.AutoSize = true;
+            this.lblArmorPenIncrease.Location = new System.Drawing.Point(115, 84);
+            this.lblArmorPenIncrease.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblArmorPenIncrease.Name = "lblArmorPenIncrease";
+            this.lblArmorPenIncrease.Size = new System.Drawing.Size(39, 13);
+            this.lblArmorPenIncrease.TabIndex = 78;
+            this.lblArmorPenIncrease.Text = "Armor Penetration:";
+            // 
+            // lblVitalityIncrease
+            // 
+            this.lblVitalityIncrease.AutoSize = true;
+            this.lblVitalityIncrease.Location = new System.Drawing.Point(115, 84);
+            this.lblVitalityIncrease.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVitalityIncrease.Name = "lblVitalityIncrease";
+            this.lblVitalityIncrease.Size = new System.Drawing.Size(39, 13);
+            this.lblVitalityIncrease.TabIndex = 79;
+            this.lblVitalityIncrease.Text = "Vitality:";
+            // 
+            // lblWisdomIncrease
+            // 
+            this.lblWisdomIncrease.AutoSize = true;
+            this.lblWisdomIncrease.Location = new System.Drawing.Point(115, 84);
+            this.lblWisdomIncrease.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblWisdomIncrease.Name = "lblWisdomIncrease";
+            this.lblWisdomIncrease.Size = new System.Drawing.Size(39, 13);
+            this.lblWisdomIncrease.TabIndex = 80;
+            this.lblWisdomIncrease.Text = "Wisdom:";
             // 
             // btnCancel
             // 
@@ -2311,6 +2521,9 @@ namespace Intersect.Editor.Forms.Editors
             ((System.ComponentModel.ISupportInitialize)(this.nudDef)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAttack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudARP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWis)).EndInit();
             this.grpGeneral.ResumeLayout(false);
             this.grpGeneral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picSprite)).EndInit();
@@ -2360,6 +2573,9 @@ namespace Intersect.Editor.Forms.Editors
             ((System.ComponentModel.ISupportInitialize)(this.nudMagicIncrease)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudArmorIncrease)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStrengthIncrease)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArmorPenIncrease)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudVitalityIncrease)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWisdomIncrease)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.mnuExpGrid.ResumeLayout(false);
@@ -2378,6 +2594,9 @@ namespace Intersect.Editor.Forms.Editors
         private System.Windows.Forms.Label lblDef;
         private System.Windows.Forms.Label lblMag;
         private System.Windows.Forms.Label lblAttack;
+        private System.Windows.Forms.Label lblARP;
+        private System.Windows.Forms.Label lblVit;
+        private System.Windows.Forms.Label lblWis;
         private DarkGroupBox grpGeneral;
         private System.Windows.Forms.ListBox lstSprites;
         private DarkComboBox cmbSprite;
@@ -2431,6 +2650,9 @@ namespace Intersect.Editor.Forms.Editors
         private System.Windows.Forms.Label lblMagicResistIncrease;
         private System.Windows.Forms.Label lblArmorIncrease;
         private System.Windows.Forms.Label lblMagicIncrease;
+        private System.Windows.Forms.Label lblArmorPenIncrease;
+        private System.Windows.Forms.Label lblVitalityIncrease;
+        private System.Windows.Forms.Label lblWisdomIncrease;
         private DarkToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton toolStripItemNew;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -2465,6 +2687,9 @@ namespace Intersect.Editor.Forms.Editors
         private DarkNumericUpDown nudDef;
         private DarkNumericUpDown nudMag;
         private DarkNumericUpDown nudAttack;
+        private DarkNumericUpDown nudARP;
+        private DarkNumericUpDown nudVit;
+        private DarkNumericUpDown nudWis;
         private DarkNumericUpDown nudExpIncrease;
         private DarkNumericUpDown nudHpIncrease;
         private DarkNumericUpDown nudMpIncrease;
@@ -2474,6 +2699,9 @@ namespace Intersect.Editor.Forms.Editors
         private DarkNumericUpDown nudMagicIncrease;
         private DarkNumericUpDown nudArmorIncrease;
         private DarkNumericUpDown nudStrengthIncrease;
+        private DarkNumericUpDown nudArmorPenIncrease;
+        private DarkNumericUpDown nudVitalityIncrease;
+        private DarkNumericUpDown nudWisdomIncrease;
         private DarkNumericUpDown nudBaseMana;
         private DarkNumericUpDown nudBaseHP;
         private DarkNumericUpDown nudBaseExp;
