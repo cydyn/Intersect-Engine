@@ -29,7 +29,7 @@ namespace Intersect.Server.Migrations.Sqlite.Game
             migrationBuilder.Sql(@"
             UPDATE Classes
             SET BaseStats = json_insert(BaseStats, '$[5]', 0, '$[6]', 0, '$[7]', 0)
-            WHERE json_array_length(BaseStats) = 8
+            WHERE json_array_length(BaseStats) = 5
         ");
 
             migrationBuilder.Sql(@"
