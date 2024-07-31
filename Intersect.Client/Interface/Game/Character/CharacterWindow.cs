@@ -240,12 +240,12 @@ namespace Intersect.Client.Interface.Game.Character
 
         void _addVitalityBtn_Clicked(Base sender, ClickedEventArgs arguments)
         {
-            PacketSender.SendUpgradeStat((int)Stat.ArmorPenetration);
+            PacketSender.SendUpgradeStat((int)Stat.Vitality);
         }
 
         void _addWisdomBtn_Clicked(Base sender, ClickedEventArgs arguments)
         {
-            PacketSender.SendUpgradeStat((int)Stat.ArmorPenetration);
+            PacketSender.SendUpgradeStat((int)Stat.Wisdom);
         }
 
         //Methods

@@ -1573,10 +1573,15 @@ namespace Intersect.Editor.Forms.Editors
             {
                 return;
             }
-            
+
             mEditorItem.EventTriggers[SelectedEventTrigger.Value] = EventBase.IdFromList(cmbEventTriggers.SelectedIndex - 1);
 
             PopulateEventTriggerList(lstEventTriggers.SelectedIndex);
+        }
+
+        private void lblPlus9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
