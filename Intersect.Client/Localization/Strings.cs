@@ -592,6 +592,60 @@ namespace Intersect.Client.Localization
 
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public static LocalizedString Title = @"Character Information";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Attacktip = @"Zwieksza przelicznik obrazen od Sily";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString AbilitiPowtip = @"Zwieksza przelicznik obrazen od Mocy";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Speedtip = @"Zwieksza Predkosc Ruchu";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Defensetip = @"Redukuje obrazenia Fizyczne";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString MagicRestip = @"Redukuje obrazenia Magiczne";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Armorpentip = @"Zwieksza obrazenia o ilosc punktow powyzej 1.";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Vitalitytip = @"Zwieksza Max HP o 1";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Wisdomtip = @"Zwieksza Max MP o 1";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Pointtip = @"Punkty do rozdania";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString CDRtip = @"Zmniejszenie czasu odnowienia czarow";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Tenacitytip = @"Zmniejsza czas dzialania stunow itp.";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Lifestealtip = @"Przelicznik kradziezy zycia";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Manastealtip = @"Przelicznik kradziezy many";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Lucktip = @"Wieksza szansa na drop i mniejsza na strate itemow";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString BonusExptip = @"Bonus do zdobywanego Expa";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString Attackspeedtip = @"Czas ataku";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString RegenHptip = @"Szybkosc Regeneracji HP";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString RegenMptip = @"Szybkosc Regeneracji MP";
         }
 
         public partial struct CharacterCreation

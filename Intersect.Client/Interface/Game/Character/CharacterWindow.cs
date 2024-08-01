@@ -150,39 +150,48 @@ namespace Intersect.Client.Interface.Game.Character
             statsLabel.SetText(Strings.Character.Stats);
 
             mAttackLabel = new Label(mCharacterWindow, "AttackLabel");
+            mAttackLabel.SetToolTipText(Strings.Character.Attacktip);
 
             mAddAttackBtn = new Button(mCharacterWindow, "IncreaseAttackButton");
             mAddAttackBtn.Clicked += _addAttackBtn_Clicked;
 
             mDefenseLabel = new Label(mCharacterWindow, "DefenseLabel");
+            mDefenseLabel.SetToolTipText(Strings.Character.Defensetip);
             mAddDefenseBtn = new Button(mCharacterWindow, "IncreaseDefenseButton");
             mAddDefenseBtn.Clicked += _addDefenseBtn_Clicked;
 
             mSpeedLabel = new Label(mCharacterWindow, "SpeedLabel");
+            mSpeedLabel.SetToolTipText(Strings.Character.Speedtip);
             mAddSpeedBtn = new Button(mCharacterWindow, "IncreaseSpeedButton");
             mAddSpeedBtn.Clicked += _addSpeedBtn_Clicked;
 
             mAbilityPwrLabel = new Label(mCharacterWindow, "AbilityPowerLabel");
+            mAbilityPwrLabel.SetToolTipText(Strings.Character.AbilitiPowtip);
             mAddAbilityPwrBtn = new Button(mCharacterWindow, "IncreaseAbilityPowerButton");
             mAddAbilityPwrBtn.Clicked += _addAbilityPwrBtn_Clicked;
 
             mMagicRstLabel = new Label(mCharacterWindow, "MagicResistLabel");
+            mMagicRstLabel.SetToolTipText(Strings.Character.MagicRestip);
             mAddMagicResistBtn = new Button(mCharacterWindow, "IncreaseMagicResistButton");
             mAddMagicResistBtn.Clicked += _addMagicResistBtn_Clicked;
 
             mArmorPenLabel = new Label(mCharacterWindow, "ArmorPenetrationLabel");
+            mArmorPenLabel.SetToolTipText(Strings.Character.Armorpentip);
             mAddArmorPenBtn = new Button(mCharacterWindow, "IncreaseArmorPenetrationButton");
             mAddArmorPenBtn.Clicked += _addArmorPenBtn_Clicked;
 
             mVitalityLabel = new Label(mCharacterWindow, "VitalityLabel");
+            mVitalityLabel.SetToolTipText(Strings.Character.Vitalitytip);
             mAddVitalityBtn = new Button(mCharacterWindow, "IncreaseVitalityButton");
             mAddVitalityBtn.Clicked += _addVitalityBtn_Clicked;
 
             mWisdomLabel = new Label(mCharacterWindow, "WisdomLabel");
+            mWisdomLabel.SetToolTipText(Strings.Character.Wisdomtip);
             mAddWisdomBtn = new Button(mCharacterWindow, "IncreaseWisdomButton");
             mAddWisdomBtn.Clicked += _addWisdomBtn_Clicked;
 
             mPointsLabel = new Label(mCharacterWindow, "PointsLabel");
+            mPointsLabel.SetToolTipText(Strings.Character.Pointtip);
 
             for (var i = 0; i < Options.EquipmentSlots.Count; i++)
             {
@@ -195,14 +204,23 @@ namespace Intersect.Client.Interface.Game.Character
             extraBuffsLabel.SetText(Strings.Character.ExtraBuffs);
 
             mHpRegen = new Label(mCharacterWindow, "HpRegen");
+            mHpRegen.SetToolTipText(Strings.Character.RegenHptip);
             mManaRegen = new Label(mCharacterWindow, "ManaRegen");
+            mManaRegen.SetToolTipText(Strings.Character.RegenMptip);
             mLifeSteal = new Label(mCharacterWindow, "Lifesteal");
+            mLifeSteal.SetToolTipText(Strings.Character.Lifestealtip);
             mAttackSpeed = new Label(mCharacterWindow, "AttackSpeed");
+            mAttackSpeed.SetToolTipText(Strings.Character.Attackspeedtip);
             mExtraExp = new Label(mCharacterWindow, "ExtraExp");
+            mExtraExp.SetToolTipText(Strings.Character.BonusExptip);
             mLuck = new Label(mCharacterWindow, "Luck");
+            mLuck.SetToolTipText(Strings.Character.Lucktip);
             mTenacity = new Label(mCharacterWindow, "Tenacity");
+            mTenacity.SetToolTipText(Strings.Character.Tenacitytip);
             mCooldownReduction = new Label(mCharacterWindow, "CooldownReduction");
+            mCooldownReduction.SetToolTipText(Strings.Character.CDRtip);
             mManaSteal = new Label(mCharacterWindow, "Manasteal");
+            mManaSteal.SetToolTipText(Strings.Character.Manastealtip);
 
             mCharacterWindow.LoadJsonUi(GameContentManager.UI.InGame, Graphics.Renderer.GetResolutionString());
         }
