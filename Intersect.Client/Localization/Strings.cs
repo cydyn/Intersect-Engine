@@ -646,6 +646,30 @@ namespace Intersect.Client.Localization
 
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public static LocalizedString RegenMptip = @"Szybkosc Regeneracji MP";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString ButtonAbilitypowtip = @"Podnosi Moc o 1";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString ButtonSpeedtip = @"Podnosi Szybkosc o 1";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString ButtonArmorpentip = @"Podnosi Penetracje o 1";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString ButtonVitalitytip = @"Podnosi Witalnosc o 1";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString ButtonWisdomtip = @"Podnosi Madrosc o 1";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString ButtonDefensetip = @"Podnosi Obrone o 1";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString ButtonAttacktip = @"Podnosi Sile o 1";
+
+            [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+            public static LocalizedString ButtonMagicRestip = @"Podnosi Obrone Magiczna o 1";
         }
 
         public partial struct CharacterCreation

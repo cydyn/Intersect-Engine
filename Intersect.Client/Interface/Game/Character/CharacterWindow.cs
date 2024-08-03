@@ -153,41 +153,49 @@ namespace Intersect.Client.Interface.Game.Character
             mAttackLabel.SetToolTipText(Strings.Character.Attacktip);
 
             mAddAttackBtn = new Button(mCharacterWindow, "IncreaseAttackButton");
+            mAddAttackBtn.SetToolTipText(Strings.Character.ButtonAttacktip);
             mAddAttackBtn.Clicked += _addAttackBtn_Clicked;
 
             mDefenseLabel = new Label(mCharacterWindow, "DefenseLabel");
             mDefenseLabel.SetToolTipText(Strings.Character.Defensetip);
             mAddDefenseBtn = new Button(mCharacterWindow, "IncreaseDefenseButton");
+            mAddDefenseBtn.SetToolTipText(Strings.Character.ButtonDefensetip);
             mAddDefenseBtn.Clicked += _addDefenseBtn_Clicked;
 
             mSpeedLabel = new Label(mCharacterWindow, "SpeedLabel");
             mSpeedLabel.SetToolTipText(Strings.Character.Speedtip);
             mAddSpeedBtn = new Button(mCharacterWindow, "IncreaseSpeedButton");
+            mAddSpeedBtn.SetToolTipText(Strings.Character.ButtonSpeedtip);
             mAddSpeedBtn.Clicked += _addSpeedBtn_Clicked;
 
             mAbilityPwrLabel = new Label(mCharacterWindow, "AbilityPowerLabel");
             mAbilityPwrLabel.SetToolTipText(Strings.Character.AbilitiPowtip);
             mAddAbilityPwrBtn = new Button(mCharacterWindow, "IncreaseAbilityPowerButton");
+            mAddAbilityPwrBtn.SetToolTipText(Strings.Character.ButtonAbilitypowtip);
             mAddAbilityPwrBtn.Clicked += _addAbilityPwrBtn_Clicked;
 
             mMagicRstLabel = new Label(mCharacterWindow, "MagicResistLabel");
             mMagicRstLabel.SetToolTipText(Strings.Character.MagicRestip);
             mAddMagicResistBtn = new Button(mCharacterWindow, "IncreaseMagicResistButton");
+            mAddMagicResistBtn.SetToolTipText(Strings.Character.ButtonMagicRestip);
             mAddMagicResistBtn.Clicked += _addMagicResistBtn_Clicked;
 
             mArmorPenLabel = new Label(mCharacterWindow, "ArmorPenetrationLabel");
             mArmorPenLabel.SetToolTipText(Strings.Character.Armorpentip);
             mAddArmorPenBtn = new Button(mCharacterWindow, "IncreaseArmorPenetrationButton");
+            mAddArmorPenBtn.SetToolTipText(Strings.Character.ButtonArmorpentip);
             mAddArmorPenBtn.Clicked += _addArmorPenBtn_Clicked;
 
             mVitalityLabel = new Label(mCharacterWindow, "VitalityLabel");
             mVitalityLabel.SetToolTipText(Strings.Character.Vitalitytip);
             mAddVitalityBtn = new Button(mCharacterWindow, "IncreaseVitalityButton");
+            mAddVitalityBtn.SetToolTipText(Strings.Character.ButtonVitalitytip);
             mAddVitalityBtn.Clicked += _addVitalityBtn_Clicked;
 
             mWisdomLabel = new Label(mCharacterWindow, "WisdomLabel");
             mWisdomLabel.SetToolTipText(Strings.Character.Wisdomtip);
             mAddWisdomBtn = new Button(mCharacterWindow, "IncreaseWisdomButton");
+            mAddWisdomBtn.SetToolTipText(Strings.Character.ButtonWisdomtip);
             mAddWisdomBtn.Clicked += _addWisdomBtn_Clicked;
 
             mPointsLabel = new Label(mCharacterWindow, "PointsLabel");
