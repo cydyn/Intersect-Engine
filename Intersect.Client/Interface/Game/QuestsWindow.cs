@@ -319,9 +319,9 @@ namespace Intersect.Client.Interface.Game
                             mQuestDescLabel.AddLineBreak();
                             mQuestDescLabel.AddLineBreak();
                         }
-
+                        mQuestDescTemplateLabel.SetTextColor(CustomColors.QuestWindow.InProgress, Label.ControlState.Normal);
                         mQuestDescLabel.AddText(Strings.QuestLog.CurrentTask, mQuestDescTemplateLabel);
-
+                        mQuestDescTemplateLabel.SetTextColor(CustomColors.QuestWindow.QuestDesc, Label.ControlState.Normal);
                         mQuestDescLabel.AddLineBreak();
                         for (var i = 0; i < mSelectedQuest.Tasks.Count; i++)
                         {
